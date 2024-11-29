@@ -5,14 +5,16 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Configuration;
-using TechTalk.SpecFlow.Generator;
-using TechTalk.SpecFlow.Generator.UnitTestConverter;
-using TechTalk.SpecFlow.Generator.UnitTestProvider;
-using TechTalk.SpecFlow.Parser;
-using TechTalk.SpecFlow.Tracing;
-using TechTalk.SpecFlow.Utils;
+using Reqnroll;
+using Reqnroll.Configuration;
+using Reqnroll.Generator;
+using Reqnroll.Generator.CodeDom;
+using Reqnroll.Generator.UnitTestConverter;
+using Reqnroll.Generator.UnitTestProvider;
+using Reqnroll.Parser;
+using Reqnroll.Tracing;
+using Reqnroll.Utils;
+using DataTable = Gherkin.Ast.DataTable;
 
 [assembly: InternalsVisibleTo("SpecFlow.Contrib.Variants.UnitTests")]
 namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
@@ -21,7 +23,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
     {
         private readonly IUnitTestGeneratorProvider _testGeneratorProvider;
         private readonly CodeDomHelper _codeDomHelper;
-        private readonly SpecFlowConfiguration _specFlowConfiguration;
+        private readonly ReqnrollConfiguration _specFlowConfiguration;
         private readonly IDecoratorRegistry _decoratorRegistry;
         private int _tableCounter;
 
@@ -33,7 +35,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
         private string _variantValue;
         //NEW CODE END
 
-        public FeatureGeneratorExtended(IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, SpecFlowConfiguration specFlowConfiguration, IDecoratorRegistry decoratorRegistry, string variantKey)
+        public FeatureGeneratorExtended(IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration specFlowConfiguration, IDecoratorRegistry decoratorRegistry, string variantKey)
             : base(decoratorRegistry, testGeneratorProvider, codeDomHelper, specFlowConfiguration)
         {
             _testGeneratorProvider = testGeneratorProvider;
@@ -43,9 +45,9 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             _variantHelper = new VariantHelper(variantKey); //NEW CODE
         }
 
-        public CodeNamespace GenerateUnitTestFixture(SpecFlowDocument document, string testClassName, string targetNamespace)
+        public CodeNamespace GenerateUnitTestFixture(ReqnrollDocument document, string testClassName, string targetNamespace)
         {
-            var specFlowFeature = document.SpecFlowFeature;
+            var specFlowFeature = document.ReqnrollFeature;
             testClassName = testClassName ?? $"{specFlowFeature.Name.ToIdentifier()}Feature";
             CreateNamespace(targetNamespace);
             CreateTestClassStructure(testClassName, document);
@@ -268,7 +270,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             _testGeneratorProvider.SetTestMethodAsRow(generationContext, testMethod, scenarioOutline.Name, exampleSetTitle, variantName, list2);
         }
 
-        private CodeMemberMethod CreateTestMethod(TestClassGenerationContext generationContext, ScenarioDefinition scenario, IEnumerable<Tag> additionalTags, string variantName = null, string exampleSetIdentifier = null)
+        private CodeMemberMethod CreateTestMethod(TestClassGenerationContext generationContext, StepsContainer scenario, IEnumerable<Tag> additionalTags, string variantName = null, string exampleSetIdentifier = null)
         {
             var method = generationContext.TestClass.CreateMethod();
             SetupTestMethod(generationContext, method, scenario, additionalTags, variantName, exampleSetIdentifier, false);
@@ -291,7 +293,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             GenerateTestBody(generationContext, scenario, testMethod, null, null);
         }
 
-        private void GenerateTestBody(TestClassGenerationContext generationContext, ScenarioDefinition scenario, CodeMemberMethod testMethod, CodeExpression additionalTagsExpression = null, ParameterSubstitution paramToIdentifier = null)
+        private void GenerateTestBody(TestClassGenerationContext generationContext, StepsContainer scenario, CodeMemberMethod testMethod, CodeExpression additionalTagsExpression = null, ParameterSubstitution paramToIdentifier = null)
         {
             CodeExpression left;
             if (additionalTagsExpression == null)
@@ -366,7 +368,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             testMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), generationContext.ScenarioCleanupMethod.Name, new CodeExpression[0]));
         }
 
-        private void SetupTestMethod(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, ScenarioDefinition scenarioDefinition, IEnumerable<Tag> additionalTags, string variantName, string exampleSetIdentifier, bool rowTest = false)
+        private void SetupTestMethod(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, StepsContainer scenarioDefinition, IEnumerable<Tag> additionalTags, string variantName, string exampleSetIdentifier, bool rowTest = false)
         {
             testMethod.Attributes = MemberAttributes.Public;
             testMethod.Name = GetTestMethodName(scenarioDefinition, variantName, exampleSetIdentifier);
@@ -390,7 +392,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
 
         private void GenerateStep(CodeMemberMethod testMethod, Step gherkinStep, ParameterSubstitution paramToIdentifier)
         {
-            var specFlowStep = gherkinStep.AsSpecFlowStep();
+            var specFlowStep = gherkinStep.AsReqnrollStep();
             var codeExpressionList = new List<CodeExpression> { paramToIdentifier.GetSubstitutedString(specFlowStep.Text) };
             if (specFlowStep.Argument != null)
                 _codeDomHelper.AddLineDirectiveHidden(testMethod.Statements, _specFlowConfiguration);
@@ -402,7 +404,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             testMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, specFlowStep.StepKeyword.ToString(), codeExpressionList.ToArray()));
         }
 
-        private string GetTestMethodName(ScenarioDefinition scenario, string variantName, string exampleSetIdentifier)
+        private string GetTestMethodName(StepsContainer scenario, string variantName, string exampleSetIdentifier)
         {
             var str1 = scenario.Name.ToIdentifier();
             if (variantName != null)

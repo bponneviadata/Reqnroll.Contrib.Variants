@@ -3,15 +3,15 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using TechTalk.SpecFlow.Parser;
+using Reqnroll.Parser;
 
-namespace SpecFlow.Contrib.Variants.UnitTests
+namespace Reqnroll.Contrib.Variants.UnitTests
 {
     internal static class Helpers
     {
-        public static T GetScenario<T>(this SpecFlowDocument document, string scenarioName) where T : Scenario
+        public static T GetScenario<T>(this ReqnrollDocument document, string scenarioName) where T : Scenario
         {
-            return (T)document.SpecFlowFeature.ScenarioDefinitions.FirstOrDefault(a => a.Name == scenarioName);
+            return (T)document.ReqnrollFeature.ScenarioDefinitions.FirstOrDefault(a => a.Name == scenarioName);
         }
 
         public static IList<Tag> GetTagsByNameStart(this Scenario scenario, string tagName)
@@ -112,7 +112,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
             return statements.SkipWhile(a =>
             {
                 var istr = a as CodeVariableDeclarationStatement;
-                return istr == null || istr.Type.BaseType != "TechTalk.SpecFlow.Table";
+                return istr == null || istr.Type.BaseType != "Reqnroll.Table";
             }).Take(rowCount).ToList();
         }
     }

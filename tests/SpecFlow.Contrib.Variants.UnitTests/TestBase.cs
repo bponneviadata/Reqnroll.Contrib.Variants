@@ -8,11 +8,11 @@ using System.CodeDom.Compiler;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using TechTalk.SpecFlow.Configuration;
-using TechTalk.SpecFlow.Generator.CodeDom;
-using TechTalk.SpecFlow.Generator.UnitTestConverter;
-using TechTalk.SpecFlow.Generator.UnitTestProvider;
-using TechTalk.SpecFlow.Parser;
+using Reqnroll.Configuration;
+using Reqnroll.Generator.CodeDom;
+using Reqnroll.Generator.UnitTestConverter;
+using Reqnroll.Generator.UnitTestProvider;
+using Reqnroll.Parser;
 
 namespace SpecFlow.Contrib.Variants.UnitTests
 {

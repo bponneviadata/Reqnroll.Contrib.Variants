@@ -1,17 +1,18 @@
-﻿using SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator;
-using System;
+﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Configuration;
-using TechTalk.SpecFlow.Generator;
-using TechTalk.SpecFlow.Generator.UnitTestConverter;
-using TechTalk.SpecFlow.Generator.UnitTestProvider;
-using TechTalk.SpecFlow.Parser;
-using TechTalk.SpecFlow.Utils;
+using Reqnroll;
+using Reqnroll.Configuration;
+using Reqnroll.Generator;
+using Reqnroll.Generator.CodeDom;
+using Reqnroll.Generator.UnitTestConverter;
+using Reqnroll.Generator.UnitTestProvider;
+using Reqnroll.Parser;
+using Reqnroll.Utils;
+using SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator;
 
 namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
 {
@@ -23,9 +24,9 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
         private readonly IDecoratorRegistry _decoratorRegistry;
         private readonly IUnitTestGeneratorProvider _testGeneratorProvider;
         private readonly CodeDomHelper _codeDomHelper;
-        private readonly SpecFlowConfiguration _specFlowConfiguration;
+        private readonly ReqnrollConfiguration _specFlowConfiguration;
 
-        public TestClassGenerator(IDecoratorRegistry decoratorRegistry, IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, SpecFlowConfiguration specFlowConfiguration)
+        public TestClassGenerator(IDecoratorRegistry decoratorRegistry, IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration specFlowConfiguration)
         {
             _decoratorRegistry = decoratorRegistry;
             _testGeneratorProvider = testGeneratorProvider;
@@ -44,11 +45,11 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
             };
         }
 
-        public void CreateTestClassStructure(string testClassName, SpecFlowDocument document)
+        public void CreateTestClassStructure(string testClassName, ReqnrollDocument document)
         {
             var generatedTypeDeclaration = _codeDomHelper.CreateGeneratedTypeDeclaration(testClassName);
             CodeNamespace.Types.Add(generatedTypeDeclaration);
-            GenerationContext = new TestClassGenerationContext(_testGeneratorProvider, document, CodeNamespace, generatedTypeDeclaration, generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), document.SpecFlowFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null, _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _specFlowConfiguration.AllowRowTests);
+            GenerationContext = new TestClassGenerationContext(_testGeneratorProvider, document, CodeNamespace, generatedTypeDeclaration, generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), document.ReqnrollFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null, _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _specFlowConfiguration.AllowRowTests);
         }
 
         public void SetupTestClass()

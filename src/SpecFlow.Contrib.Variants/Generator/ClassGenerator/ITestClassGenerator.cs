@@ -1,11 +1,11 @@
-﻿using TechTalk.SpecFlow.Parser;
+﻿using Reqnroll.Parser;
 
 namespace SpecFlow.Contrib.Variants.Generator.ClassGenerator
 {
     internal interface ITestClassGenerator
     {
         void CreateNamespace(string targetNameSpace);
-        void CreateTestClassStructure(string testClassName, SpecFlowDocument document);
+        void CreateTestClassStructure(string testClassName, ReqnrollDocument document);
         void SetupTestClass();
         void SetupTestClassInitializeMethod();
         void SetupTestInitializeMethod();

@@ -1,5 +1,5 @@
-﻿using TechTalk.SpecFlow.Generator.UnitTestConverter;
-using TechTalk.SpecFlow.Parser;
+﻿using Reqnroll.Generator.UnitTestConverter;
+using Reqnroll.Parser;
 
 namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
 {
@@ -14,12 +14,12 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             _unitTestFeatureGenerator = unitTestFeatureGenerator;
         }
 
-        public bool CanGenerate(SpecFlowDocument document)
+        public bool CanGenerate(ReqnrollDocument document)
         {
             return true;
         }
 
-        public IFeatureGenerator CreateGenerator(SpecFlowDocument document)
+        public IFeatureGenerator CreateGenerator(ReqnrollDocument document)
         {
             return _unitTestFeatureGenerator;
         }

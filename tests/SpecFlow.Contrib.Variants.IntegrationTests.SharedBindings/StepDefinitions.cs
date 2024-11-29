@@ -1,7 +1,7 @@
 ﻿using SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings.Pages;
 using System;
 using System.Linq;
-using TechTalk.SpecFlow;
+using Reqnroll;
 
 namespace SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings
 {

@@ -4,14 +4,14 @@ using SpecFlow.Contrib.Variants.Providers;
 using System;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using TechTalk.SpecFlow.Configuration;
-using TechTalk.SpecFlow.Generator.CodeDom;
-using TechTalk.SpecFlow.Generator.Interfaces;
-using TechTalk.SpecFlow.Generator.Plugins;
-using TechTalk.SpecFlow.Generator.UnitTestConverter;
-using TechTalk.SpecFlow.Generator.UnitTestProvider;
-using TechTalk.SpecFlow.Infrastructure;
-using TechTalk.SpecFlow.UnitTestProvider;
+using Reqnroll.Configuration;
+using Reqnroll.Generator.CodeDom;
+using Reqnroll.Generator.Interfaces;
+using Reqnroll.Generator.Plugins;
+using Reqnroll.Generator.UnitTestConverter;
+using Reqnroll.Generator.UnitTestProvider;
+using Reqnroll.Infrastructure;
+using Reqnroll.UnitTestProvider;
 
 [assembly: GeneratorPlugin(typeof(VariantsPlugin))]
 
@@ -61,7 +61,7 @@ namespace SpecFlow.Contrib.Variants
             }
 
             var generatorProvider = GetGeneratorProviderFromConfig(codeDomHelper, utp);
-            var specflowConfiguration = eventArgs.SpecFlowProjectConfiguration.SpecFlowConfiguration;
+            var specflowConfiguration = eventArgs.ReqnrollProjectConfiguration.ReqnrollConfiguration;
 
             // Create generator instance to be registered and replace original
             var customFeatureGenerator = new FeatureGeneratorExtended(generatorProvider, codeDomHelper, specflowConfiguration, decoratorRegistry, _variantKey);
@@ -80,14 +80,7 @@ namespace SpecFlow.Contrib.Variants
             return match.Success ? match.Value : "";
         }
 
-        private IUnitTestGeneratorProvider GetGeneratorProviderFromConfig(CodeDomHelper codeDomHelper, string config) =>
-            config switch
-            {
-                "mstest" => new MsTestProviderExtended(codeDomHelper, _variantKey),
-                "nunit" => new NUnitProviderExtended(codeDomHelper, _variantKey),
-                "xunit" => new XUnitProviderExtended(codeDomHelper, _variantKey),
-                _ => new MsTestProviderExtended(codeDomHelper, _variantKey),
-            };
+        private IUnitTestGeneratorProvider GetGeneratorProviderFromConfig(CodeDomHelper codeDomHelper, string config) => new NUnitProviderExtended(codeDomHelper, _variantKey);
 
         private string GetGeneratorPath(string config)
         {

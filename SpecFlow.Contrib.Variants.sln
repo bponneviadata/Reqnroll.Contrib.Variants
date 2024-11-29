@@ -1,15 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29209.62
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Contrib.Variants.SpecFlowPlugin", "src\SpecFlow.Contrib.Variants.SpecFlowPlugin\SpecFlow.Contrib.Variants.SpecFlowPlugin.csproj", "{2D671486-4DD8-48B5-910C-6A01D2F80C3C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Contrib.Variants.UnitTests", "tests\SpecFlow.Contrib.Variants.UnitTests\SpecFlow.Contrib.Variants.UnitTests.csproj", "{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Contrib.Variants.MsTestProvider.IntegrationTests", "tests\SpecFlow.Contrib.Variants.MsTestProvider.IntegrationTests\SpecFlow.Contrib.Variants.MsTestProvider.IntegrationTests.csproj", "{B8D64DD0-5834-457F-86D2-45477E0B4CD6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Contrib.Variants.XUnitProvider.IntegrationTests", "tests\SpecFlow.Contrib.Variants.XUnitProvider.IntegrationTests\SpecFlow.Contrib.Variants.XUnitProvider.IntegrationTests.csproj", "{4BC98D97-D724-4E02-8CE8-22188CAC01F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Contrib.Variants.NUnitProvider.IntegrationTests", "tests\SpecFlow.Contrib.Variants.NUnitProvider.IntegrationTests\SpecFlow.Contrib.Variants.NUnitProvider.IntegrationTests.csproj", "{A53BACE2-4044-4A32-BC70-B49621BD2FE0}"
 EndProject
@@ -17,11 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Contrib.Variants.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecFlow.Contrib.Variants", "src\SpecFlow.Contrib.Variants\SpecFlow.Contrib.Variants.csproj", "{59BD7EEC-4F82-482F-86F3-B5D8164805D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecFlow.Contrib.Variants.Core.MsTestProvider.IntegrationTests", "tests\SpecFlow.Contrib.Variants.Core.MsTestProvider.IntegrationTests\SpecFlow.Contrib.Variants.Core.MsTestProvider.IntegrationTests.csproj", "{5B588966-2E60-4FD2-A739-A4B81823769A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecFlow.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests", "tests\SpecFlow.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests\SpecFlow.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests.csproj", "{F15D8EDA-A590-408D-AE00-33E01BA1615A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecFlow.Contrib.Variants.Core.XUnitTestProvider.IntegrationTests", "tests\SpecFlow.Contrib.Variants.Core.XUnitTestProvider.IntegrationTests\SpecFlow.Contrib.Variants.Core.XUnitTestProvider.IntegrationTests.csproj", "{65F3623D-DDA5-4512-AC83-6B4D72ACC3CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,18 +23,6 @@ Global
 		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8D64DD0-5834-457F-86D2-45477E0B4CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8D64DD0-5834-457F-86D2-45477E0B4CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8D64DD0-5834-457F-86D2-45477E0B4CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8D64DD0-5834-457F-86D2-45477E0B4CD6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BC98D97-D724-4E02-8CE8-22188CAC01F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BC98D97-D724-4E02-8CE8-22188CAC01F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BC98D97-D724-4E02-8CE8-22188CAC01F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BC98D97-D724-4E02-8CE8-22188CAC01F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A53BACE2-4044-4A32-BC70-B49621BD2FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A53BACE2-4044-4A32-BC70-B49621BD2FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A53BACE2-4044-4A32-BC70-B49621BD2FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,18 +35,10 @@ Global
 		{59BD7EEC-4F82-482F-86F3-B5D8164805D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59BD7EEC-4F82-482F-86F3-B5D8164805D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59BD7EEC-4F82-482F-86F3-B5D8164805D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B588966-2E60-4FD2-A739-A4B81823769A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B588966-2E60-4FD2-A739-A4B81823769A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B588966-2E60-4FD2-A739-A4B81823769A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B588966-2E60-4FD2-A739-A4B81823769A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F15D8EDA-A590-408D-AE00-33E01BA1615A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F15D8EDA-A590-408D-AE00-33E01BA1615A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F15D8EDA-A590-408D-AE00-33E01BA1615A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F15D8EDA-A590-408D-AE00-33E01BA1615A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65F3623D-DDA5-4512-AC83-6B4D72ACC3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65F3623D-DDA5-4512-AC83-6B4D72ACC3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65F3623D-DDA5-4512-AC83-6B4D72ACC3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65F3623D-DDA5-4512-AC83-6B4D72ACC3CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

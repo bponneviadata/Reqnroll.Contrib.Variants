@@ -1,9 +1,12 @@
-﻿using System.CodeDom;
+﻿using Gherkin.Ast;
+using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using TechTalk.SpecFlow.Generator;
-using TechTalk.SpecFlow.Generator.UnitTestProvider;
-using TechTalk.SpecFlow.Utils;
+using Reqnroll.Generator;
+using Reqnroll.Generator.CodeDom;
+using Reqnroll.Generator.UnitTestProvider;
+using Reqnroll.Utils;
 
 namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Providers
 {
@@ -135,6 +138,16 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Providers
 
         public void SetRowTest(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, string scenarioTitle)
         {
+        }
+
+        public void SetTestClassNonParallelizable(TestClassGenerationContext generationContext)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void MarkCodeMethodInvokeExpressionAsAwait(CodeMethodInvokeExpression expression)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

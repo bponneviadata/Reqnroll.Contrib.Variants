@@ -1,9 +1,13 @@
-﻿using System.CodeDom;
+﻿using Gherkin.Ast;
+using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using TechTalk.SpecFlow.Generator;
-using TechTalk.SpecFlow.Generator.CodeDom;
-using TechTalk.SpecFlow.Generator.UnitTestProvider;
+using System.Text.RegularExpressions;
+using Reqnroll.Generator;
+using Reqnroll.Generator.CodeDom;
+using Reqnroll.Generator.Interfaces;
+using Reqnroll.Generator.UnitTestProvider;
 
 namespace SpecFlow.Contrib.Variants.Providers
 {
@@ -11,6 +15,8 @@ namespace SpecFlow.Contrib.Variants.Providers
     {
         private readonly CodeDomHelper _codeDomHelper;
         private readonly string _variantKey;
+        private CodeTypeDeclaration _currentFixtureDataTypeDeclaration;
+        private readonly CodeTypeReference _objectCodeTypeReference = new CodeTypeReference(typeof(object));
         private IEnumerable<string> _filteredCategories;
 
         public NUnitProviderExtended(CodeDomHelper codeDomHelper, string variantKey)
@@ -21,7 +27,7 @@ namespace SpecFlow.Contrib.Variants.Providers
 
         public UnitTestGeneratorTraits GetTraits()
         {
-            return UnitTestGeneratorTraits.RowTests | UnitTestGeneratorTraits.ParallelExecution;
+            return UnitTestGeneratorTraits.ParallelExecution;
         }
 
         public void SetTestClass(TestClassGenerationContext generationContext, string featureTitle, string featureDescription)
@@ -148,6 +154,10 @@ namespace SpecFlow.Contrib.Variants.Providers
         }
 
         public void SetRowTest(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, string scenarioTitle)
+        {
+        }
+
+        public void MarkCodeMethodInvokeExpressionAsAwait(CodeMethodInvokeExpression expression)
         {
         }
     }

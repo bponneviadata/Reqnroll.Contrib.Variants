@@ -3,15 +3,15 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using TechTalk.SpecFlow.Generator;
-using TechTalk.SpecFlow.Parser;
-using TechTalk.SpecFlow.Tracing;
+using Reqnroll.Generator;
+using Reqnroll.Parser;
+using Reqnroll.Tracing;
 
 namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
 {
     internal static class SpecFlowFeatureExtensions
     {
-        public static bool HasFeatureBackground(this SpecFlowFeature feature)
+        public static bool HasFeatureBackground(this ReqnrollFeature feature)
         {
             return feature.Background != null;
         }
@@ -67,9 +67,9 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             return tagLists.Where(tagList => tagList != null).SelectMany(tagList => tagList).Concat(tags);
         }
 
-        public static SpecFlowStep AsSpecFlowStep(this Step step)
+        public static ReqnrollStep AsReqnrollStep(this Step step)
         {
-            if (step is SpecFlowStep specFlowStep) return specFlowStep;
+            if (step is ReqnrollStep specFlowStep) return specFlowStep;
             throw new TestGeneratorException("The step must be a SpecFlowStep.");
         }
     }
