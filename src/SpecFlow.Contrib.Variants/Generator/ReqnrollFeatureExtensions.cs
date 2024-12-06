@@ -7,9 +7,9 @@ using Reqnroll.Generator;
 using Reqnroll.Parser;
 using Reqnroll.Tracing;
 
-namespace SpecFlow.Contrib.Variants.Generator
+namespace Reqnroll.Contrib.Variants.Generator
 {
-    internal static class SpecFlowFeatureExtensions
+    internal static class ReqnrollFeatureExtensions
     {
         public static bool HasFeatureBackground(this ReqnrollFeature feature)
         {
@@ -69,7 +69,7 @@ namespace SpecFlow.Contrib.Variants.Generator
 
         public static ReqnrollStep AsReqnrollStep(this Step step)
         {
-            if (step is ReqnrollStep specFlowStep) return specFlowStep;
+            if (step is ReqnrollStep reqnrollStep) return reqnrollStep;
             throw new TestGeneratorException("The step must be a ReqnrollStep.");
         }
     }

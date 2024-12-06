@@ -1,6 +1,6 @@
-﻿using SpecFlow.Contrib.Variants;
-using SpecFlow.Contrib.Variants.Generator;
-using SpecFlow.Contrib.Variants.Providers;
+﻿using Reqnroll.Contrib.Variants;
+using Reqnroll.Contrib.Variants.Generator;
+using Reqnroll.Contrib.Variants.Providers;
 using System;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -15,7 +15,7 @@ using Reqnroll.UnitTestProvider;
 
 [assembly: GeneratorPlugin(typeof(VariantsPlugin))]
 
-namespace SpecFlow.Contrib.Variants
+namespace Reqnroll.Contrib.Variants
 {
     public class VariantsPlugin : IGeneratorPlugin
     {
@@ -57,7 +57,7 @@ namespace SpecFlow.Contrib.Variants
                 utp = c.UnitTestProvider;
 
                 if (string.IsNullOrEmpty(utp))
-                    throw new Exception("Unit test provider not detected, please install as a nuget package described here: https://github.com/SpecFlowOSS/SpecFlow/wiki/SpecFlow-and-.NET-Core");
+                    throw new Exception("Unit test provider not detected, please install as a nuget package described here: https://github.com/ReqnrollOSS/Reqnroll/wiki/Reqnroll-and-.NET-Core");
             }
 
             var generatorProvider = GetGeneratorProviderFromConfig(codeDomHelper, utp);

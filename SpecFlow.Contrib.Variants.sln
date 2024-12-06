@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Contrib.Variants.SpecFlowPlugin", "src\SpecFlow.Contrib.Variants.SpecFlowPlugin\SpecFlow.Contrib.Variants.SpecFlowPlugin.csproj", "{2D671486-4DD8-48B5-910C-6A01D2F80C3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reqnroll.Contrib.Variants.ReqnrollPlugin", "src\SpecFlow.Contrib.Variants.SpecFlowPlugin\Reqnroll.Contrib.Variants.ReqnrollPlugin.csproj", "{2D671486-4DD8-48B5-910C-6A01D2F80C3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecFlow.Contrib.Variants", "src\SpecFlow.Contrib.Variants\SpecFlow.Contrib.Variants.csproj", "{59BD7EEC-4F82-482F-86F3-B5D8164805D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reqnroll.Contrib.Variants", "src\SpecFlow.Contrib.Variants\Reqnroll.Contrib.Variants.csproj", "{59BD7EEC-4F82-482F-86F3-B5D8164805D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

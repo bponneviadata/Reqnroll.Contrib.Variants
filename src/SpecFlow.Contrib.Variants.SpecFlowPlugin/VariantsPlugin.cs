@@ -1,6 +1,6 @@
-﻿using SpecFlow.Contrib.Variants.SpecFlowPlugin;
-using SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator;
-using SpecFlow.Contrib.Variants.SpecFlowPlugin.Providers;
+﻿using Reqnroll.Contrib.Variants.SpecFlowPlugin;
+using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator;
+using Reqnroll.Contrib.Variants.SpecFlowPlugin.Providers;
 using System.Linq;
 using Reqnroll.Configuration;
 using Reqnroll.Generator.CodeDom;
@@ -14,7 +14,7 @@ using Reqnroll.UnitTestProvider;
 
 [assembly: GeneratorPlugin(typeof(VariantsPlugin))]
 
-namespace SpecFlow.Contrib.Variants.SpecFlowPlugin
+namespace Reqnroll.Contrib.Variants.SpecFlowPlugin
 {
     public class VariantsPlugin : IGeneratorPlugin
     {

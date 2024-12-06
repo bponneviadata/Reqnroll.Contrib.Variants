@@ -5,7 +5,7 @@ using Reqnroll.Generator;
 using Reqnroll.Generator.CodeDom;
 using Reqnroll.Generator.UnitTestProvider;
 
-namespace SpecFlow.Contrib.Variants.Providers
+namespace Reqnroll.Contrib.Variants.Providers
 {
     internal class NUnitProviderExtended : IUnitTestGeneratorProvider
     {

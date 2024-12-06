@@ -1,0 +1,9 @@
+﻿<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_ReqnrollContribVariantsPluginFramework Condition=" '$(MSBuildRuntimeType)' == 'Core'">netstandard2.0</_ReqnrollContribVariantsPluginFramework>
+    <_ReqnrollContribVariantsPluginFramework Condition=" '$(MSBuildRuntimeType)' != 'Core'">net461</_ReqnrollContribVariantsPluginFramework>
+
+    <_ReqnrollContribVariantsPluginPath>$(MSBuildThisFileDirectory)\$(_ReqnrollContribVariantsPluginFramework)\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll</_ReqnrollContribVariantsPluginPath>
+
+  </PropertyGroup>
+</Project>

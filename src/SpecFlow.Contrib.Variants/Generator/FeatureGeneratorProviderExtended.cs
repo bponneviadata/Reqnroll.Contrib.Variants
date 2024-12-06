@@ -1,7 +1,7 @@
 ﻿using Reqnroll.Generator.UnitTestConverter;
 using Reqnroll.Parser;
 
-namespace SpecFlow.Contrib.Variants.Generator
+namespace Reqnroll.Contrib.Variants.Generator
 {
     internal class FeatureGeneratorProviderExtended : IFeatureGeneratorProvider
     {

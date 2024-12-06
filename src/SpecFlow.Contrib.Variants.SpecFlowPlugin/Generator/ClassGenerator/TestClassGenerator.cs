@@ -12,9 +12,9 @@ using Reqnroll.Generator.UnitTestConverter;
 using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Parser;
 using Reqnroll.Utils;
-using SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator;
+using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator;
 
-namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
+namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
 {
     internal class TestClassGenerator : ITestClassGenerator
     {
@@ -41,7 +41,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
                 targetNamespace = $"GlobalVBNetNamespace.{targetNamespace}";
             CodeNamespace = new CodeNamespace(targetNamespace)
             {
-                Imports = { new CodeNamespaceImport("TechTalk.SpecFlow") }
+                Imports = { new CodeNamespaceImport("TechTalk.Reqnroll") }
             };
         }
 

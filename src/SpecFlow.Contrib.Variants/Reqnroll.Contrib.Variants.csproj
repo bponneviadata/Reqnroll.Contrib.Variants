@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>Reqnroll.Contrib.Variants.ReqnrollPlugin</AssemblyName>
+    <PackageId>ViaData.Reqnroll.Variants</PackageId>
+    <Version>1.0</Version>
+    <Authors>ViaData FieldService BV;Brian Ponne</Authors>
+    <Copyright>Copyright 2024 ViaData FieldService BV</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/bponneviadata/Reqnroll.Contrib.Variants</PackageProjectUrl>
+    <PackageIcon>Logo.png</PackageIcon>
+    <Description>Extends Reqnroll to allow variants of a test to be run using tags</Description>
+    <PackageReleaseNotes>Updated to support Reqnroll</PackageReleaseNotes>
+    <PackageTags>reqnroll;bdd;gherkin;cucumber</PackageTags>
+    <RepositoryUrl>https://github.com/bponneviadata/Reqnroll.Contrib.Variants</RepositoryUrl>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <LangVersion>8.0</LangVersion>
+    <Company>ViaData FieldService BV</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Reqnroll" Version="2.2.1" />
+	  <PackageReference Include="Reqnroll.CustomPlugin" Version="2.2.1" PrivateAssets="All" />
+	  <PackageReference Include="Reqnroll.Tools.MsBuild.Generation" Version="2.2.1" />
+  </ItemGroup>
+
+  <Target Name="CopyFile" AfterTargets="Build">
+  <ItemGroup>
+    <None Include="build\**" Pack="true" PackagePath="build" />
+    <None Include="images\Logo.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\$(Configuration)\net461\Reqnroll.Contrib.Variants.ReqnrollPlugin.*" Pack="true" PackagePath="build\net461" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\$(Configuration)\netstandard2.1\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll" Pack="true" PackagePath="build\netstandard2.1" />
+    <None Include="bin\$(Configuration)\netstandard2.1\Reqnroll.Contrib.Variants.ReqnrollPlugin.pdb" Pack="true" PackagePath="build\netstandard2.1" />
+  </ItemGroup>
+  </Target>
+
+</Project>

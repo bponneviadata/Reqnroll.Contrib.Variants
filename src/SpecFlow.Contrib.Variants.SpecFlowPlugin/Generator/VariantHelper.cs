@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Reqnroll.Parser;
 
-namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
+namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
 {
     internal class VariantHelper
     {

@@ -1,6 +1,6 @@
 ﻿using Reqnroll.Parser;
 
-namespace SpecFlow.Contrib.Variants.Generator.ClassGenerator
+namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
 {
     internal interface ITestClassGenerator
     {

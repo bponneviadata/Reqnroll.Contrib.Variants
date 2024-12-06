@@ -7,9 +7,9 @@ using Reqnroll.Generator;
 using Reqnroll.Parser;
 using Reqnroll.Tracing;
 
-namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
+namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
 {
-    internal static class SpecFlowFeatureExtensions
+    internal static class ReqnrollFeatureExtensions
     {
         public static bool HasFeatureBackground(this ReqnrollFeature feature)
         {

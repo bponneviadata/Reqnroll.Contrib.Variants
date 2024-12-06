@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SpecFlow.Contrib.Variants.SpecFlowPlugin")]
+[assembly: AssemblyTitle("Reqnroll.Contrib.Variants.ReqnrollPlugin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SpecFlow.Contrib.Variants.SpecFlowPlugin")]
+[assembly: AssemblyProduct("Reqnroll.Contrib.Variants.ReqnrollPlugin")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

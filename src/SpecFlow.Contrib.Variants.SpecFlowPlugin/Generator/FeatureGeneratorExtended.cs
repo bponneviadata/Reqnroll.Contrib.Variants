@@ -1,6 +1,6 @@
 ﻿using Gherkin.Ast;
-using SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator;
-using SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator;
+using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator;
+using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,8 @@ using Reqnroll.Tracing;
 using Reqnroll.Utils;
 using DataTable = Gherkin.Ast.DataTable;
 
-[assembly: InternalsVisibleTo("SpecFlow.Contrib.Variants.UnitTests")]
-namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
+[assembly: InternalsVisibleTo("Reqnroll.Contrib.Variants.UnitTests")]
+namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
 {
     internal class FeatureGeneratorExtended : TestClassGenerator, IFeatureGenerator
     {
@@ -397,7 +397,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             if (specFlowStep.Argument != null)
                 _codeDomHelper.AddLineDirectiveHidden(testMethod.Statements, _specFlowConfiguration);
             codeExpressionList.Add(paramToIdentifier.GetSubstitutedString((specFlowStep.Argument as DocString)?.Content));
-            codeExpressionList.Add(GetTableArgExpression(specFlowStep.Argument as DataTable, testMethod.Statements, paramToIdentifier));
+            codeExpressionList.Add(GetTableArgExpression(specFlowStep.Argument as Gherkin.Ast.DataTable, testMethod.Statements, paramToIdentifier));
             codeExpressionList.Add(new CodePrimitiveExpression(specFlowStep.Keyword));
             _codeDomHelper.AddLineDirective(specFlowStep, testMethod.Statements, _specFlowConfiguration);
             var runnerExpression = GetTestRunnerExpression();
@@ -415,7 +415,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator
             return str1;
         }
 
-        private CodeExpression GetTableArgExpression(DataTable tableArg, CodeStatementCollection statements, ParameterSubstitution paramToIdentifier)
+        private CodeExpression GetTableArgExpression(Gherkin.Ast.DataTable tableArg, CodeStatementCollection statements, ParameterSubstitution paramToIdentifier)
         {
             if (tableArg == null)
                 return new CodeCastExpression(typeof(Table), new CodePrimitiveExpression(null));

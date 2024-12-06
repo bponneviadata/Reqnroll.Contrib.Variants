@@ -8,7 +8,7 @@ using Reqnroll.Generator.CodeDom;
 using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Utils;
 
-namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Providers
+namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Providers
 {
     internal class NUnitProviderExtended : IUnitTestGeneratorProvider
     {

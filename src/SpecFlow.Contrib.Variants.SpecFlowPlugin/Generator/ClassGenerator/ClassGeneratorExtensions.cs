@@ -1,5 +1,5 @@
 ﻿using Gherkin.Ast;
-using SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator;
+using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using Reqnroll.Configuration;
 using Reqnroll.Generator.CodeDom;
 using Reqnroll.Utils;
 
-namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
+namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
 {
     internal static class ClassGeneratorExtensions
     {
@@ -22,7 +22,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
         public static void AddLineDirectiveHidden(this CodeDomHelper codeDomHelper, CodeStatementCollection statements, ReqnrollConfiguration specFlowConfiguration)
         {
             if (specFlowConfiguration.AllowDebugGeneratedFiles) return;
-            codeDomHelper.AddDisableSourceLinePragmaStatement(statements);
+            //codeDomHelper.AddDisableSourceLinePragmaStatement(statements);
         }
 
         public static void AddLineDirective(this CodeDomHelper codeDomHelper, Background background, CodeStatementCollection statements, ReqnrollConfiguration specFlowConfiguration)
@@ -43,7 +43,7 @@ namespace SpecFlow.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
         private static void AddLineDirective(CodeStatementCollection statements, Location location, ReqnrollConfiguration specFlowConfiguration, CodeDomHelper codeDomHelper)
         {
             if (location == null || specFlowConfiguration.AllowDebugGeneratedFiles) return;
-            codeDomHelper.AddSourceLinePragmaStatement(statements, location.Line, location.Column);
+            //codeDomHelper.AddSourceLinePragmaStatement(statements, location.Line, location.Column);
         }
 
         public static CodeExpression GetSubstitutedString(this ParameterSubstitution paramToIdentifier, string text)

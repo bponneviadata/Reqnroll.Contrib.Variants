@@ -12,7 +12,7 @@ using Reqnroll.Generator.UnitTestConverter;
 using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Parser;
 
-namespace SpecFlow.Contrib.Variants.Generator.ClassGenerator
+namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
 {
     internal class TestClassGenerator : ITestClassGenerator
     {
@@ -22,24 +22,24 @@ namespace SpecFlow.Contrib.Variants.Generator.ClassGenerator
         private readonly IDecoratorRegistry _decoratorRegistry;
         private readonly IUnitTestGeneratorProvider _testGeneratorProvider;
         private readonly CodeDomHelper _codeDomHelper;
-        private readonly ReqnrollConfiguration _specFlowConfiguration;
+        private readonly ReqnrollConfiguration _reqnrollConfiguration;
 
-        public TestClassGenerator(IDecoratorRegistry decoratorRegistry, IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration specFlowConfiguration)
+        public TestClassGenerator(IDecoratorRegistry decoratorRegistry, IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration reqnrollConfiguration)
         {
             _decoratorRegistry = decoratorRegistry;
             _testGeneratorProvider = testGeneratorProvider;
             _codeDomHelper = codeDomHelper;
-            _specFlowConfiguration = specFlowConfiguration;
+            _reqnrollConfiguration = reqnrollConfiguration;
         }
 
         public void CreateNamespace(string targetNamespace)
         {
-            targetNamespace = targetNamespace ?? "SpecFlowTests";
+            targetNamespace = targetNamespace ?? "ReqnrollTests";
             if (!targetNamespace.StartsWith("global", StringComparison.CurrentCultureIgnoreCase) && _codeDomHelper.TargetLanguage == CodeDomProviderLanguage.VB)
                 targetNamespace = $"GlobalVBNetNamespace.{targetNamespace}";
             CodeNamespace = new CodeNamespace(targetNamespace)
             {
-                Imports = { new CodeNamespaceImport("TechTalk.SpecFlow") }
+                Imports = { new CodeNamespaceImport("TechTalk.Reqnroll") }
             };
         }
 
@@ -47,14 +47,14 @@ namespace SpecFlow.Contrib.Variants.Generator.ClassGenerator
         {
             var generatedTypeDeclaration = _codeDomHelper.CreateGeneratedTypeDeclaration(testClassName);
             CodeNamespace.Types.Add(generatedTypeDeclaration);
-            GenerationContext = new TestClassGenerationContext(_testGeneratorProvider, document, CodeNamespace, generatedTypeDeclaration, generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), document.ReqnrollFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null, _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _specFlowConfiguration.AllowRowTests);
+            GenerationContext = new TestClassGenerationContext(_testGeneratorProvider, document, CodeNamespace, generatedTypeDeclaration, generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), document.ReqnrollFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null, _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _reqnrollConfiguration.AllowRowTests);
         }
 
         public void SetupTestClass()
         {
             GenerationContext.TestClass.IsPartial = true;
             GenerationContext.TestClass.TypeAttributes |= TypeAttributes.Public;
-            _codeDomHelper.AddLinePragmaInitial(GenerationContext.TestClass, GenerationContext.Document.SourceFilePath, _specFlowConfiguration);
+            _codeDomHelper.AddLinePragmaInitial(GenerationContext.TestClass, GenerationContext.Document.SourceFilePath, _reqnrollConfiguration);
             _testGeneratorProvider.SetTestClass(GenerationContext, GenerationContext.Feature.Name, GenerationContext.Feature.Description);
             _decoratorRegistry.DecorateTestClass(GenerationContext, out List<string> unprocessedTags);
             if (!unprocessedTags.Any())
