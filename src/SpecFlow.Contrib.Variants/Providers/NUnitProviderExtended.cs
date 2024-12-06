@@ -1,12 +1,8 @@
-﻿using Gherkin.Ast;
-using System;
-using System.CodeDom;
+﻿using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Reqnroll.Generator;
 using Reqnroll.Generator.CodeDom;
-using Reqnroll.Generator.Interfaces;
 using Reqnroll.Generator.UnitTestProvider;
 
 namespace SpecFlow.Contrib.Variants.Providers

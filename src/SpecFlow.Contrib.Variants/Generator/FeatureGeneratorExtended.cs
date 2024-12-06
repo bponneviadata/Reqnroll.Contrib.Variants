@@ -1,7 +1,6 @@
 ﻿using Gherkin.Ast;
 using SpecFlow.Contrib.Variants.Generator;
 using SpecFlow.Contrib.Variants.Generator.ClassGenerator;
-using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.Specialized;
