@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings.Pages
+namespace Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings.Pages
 {
     public class CommonsPage
     {

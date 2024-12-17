@@ -10,8 +10,8 @@
     <ProjectGuid>{F655E690-8C6F-47B4-A916-2BB50C183495}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings</RootNamespace>
-    <AssemblyName>SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings</AssemblyName>
+    <RootNamespace>Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings</RootNamespace>
+    <AssemblyName>Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -184,9 +184,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow, Version=3.9.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SpecFlow.3.9.74\lib\net461\TechTalk.SpecFlow.dll</HintPath>
-    </Reference>
     <Reference Include="Utf8Json, Version=1.3.7.0, Culture=neutral, PublicKeyToken=8a73d3ba7e392e27, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Utf8Json.1.3.7\lib\net47\Utf8Json.dll</HintPath>
     </Reference>
@@ -214,7 +211,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\SpecFlow.3.9.74\build\SpecFlow.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SpecFlow.3.9.74\build\SpecFlow.targets'))" />
     <Error Condition="!Exists('..\..\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets'))" />
     <Error Condition="!Exists('..\..\packages\Selenium.WebDriver.ChromeDriver.127.0.6533.11900\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Selenium.WebDriver.ChromeDriver.127.0.6533.11900\build\Selenium.WebDriver.ChromeDriver.targets'))" />
     <Error Condition="!Exists('..\..\packages\NUnit.3.13.3\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.13.3\build\NUnit.props'))" />
@@ -224,7 +220,6 @@
     <Error Condition="!Exists('..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.props'))" />
     <Error Condition="!Exists('..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.targets'))" />
   </Target>
-  <Import Project="..\..\packages\SpecFlow.3.9.74\build\SpecFlow.targets" Condition="Exists('..\..\packages\SpecFlow.3.9.74\build\SpecFlow.targets')" />
   <Import Project="..\..\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets" Condition="Exists('..\..\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets')" />
   <Import Project="..\..\packages\Selenium.WebDriver.ChromeDriver.127.0.6533.11900\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\..\packages\Selenium.WebDriver.ChromeDriver.127.0.6533.11900\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets" Condition="Exists('..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets')" />

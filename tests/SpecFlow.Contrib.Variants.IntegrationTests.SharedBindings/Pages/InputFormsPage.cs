@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings.Pages
+namespace Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings.Pages
 {
     public class InputFormsPage
     {

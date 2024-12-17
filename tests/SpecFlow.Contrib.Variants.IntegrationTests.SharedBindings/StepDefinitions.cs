@@ -1,9 +1,9 @@
-﻿using SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings.Pages;
+﻿using Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings.Pages;
 using System;
 using System.Linq;
 using Reqnroll;
 
-namespace SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings
+namespace Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings
 {
     [Binding]
     public sealed class StepDefinitions

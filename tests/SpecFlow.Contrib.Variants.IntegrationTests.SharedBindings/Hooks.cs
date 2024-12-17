@@ -10,7 +10,7 @@ using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 
-namespace SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings
+namespace Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings
 {
     [Binding]
     public sealed class Hooks
