@@ -87,7 +87,8 @@ namespace Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings
                     Directory.CreateDirectory(path);
                 try
                 {
-                    ((ITakesScreenshot)_driver)?.GetScreenshot().SaveAsFile($@"{path}\{_scenarioContext.ScenarioInfo.Title}.jpg", ScreenshotImageFormat.Jpeg);
+                    ((ITakesScreenshot)_driver)?.GetScreenshot().SaveAsFile($@"{path}\{_scenarioContext.ScenarioInfo.Title}.jpg");
+
                 }
                 catch (Exception e)
                 {
