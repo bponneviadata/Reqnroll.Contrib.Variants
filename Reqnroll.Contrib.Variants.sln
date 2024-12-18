@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reqnroll.Contrib.Variants.ReqnrollPlugin", "src\SpecFlow.Contrib.Variants.SpecFlowPlugin\Reqnroll.Contrib.Variants.ReqnrollPlugin.csproj", "{2D671486-4DD8-48B5-910C-6A01D2F80C3C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reqnroll.Contrib.Variants", "src\SpecFlow.Contrib.Variants\Reqnroll.Contrib.Variants.csproj", "{59BD7EEC-4F82-482F-86F3-B5D8164805D6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reqnroll.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests", "tests\Reqnroll.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests\Reqnroll.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests.csproj", "{4291AF82-ED50-42B5-8926-F4B5C35B32BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings", "tests\Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings\Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings.csproj", "{F655E690-8C6F-47B4-A916-2BB50C183495}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reqnroll.Contrib.Variants.NUnitProvider.IntegrationTests", "tests\Reqnroll.Contrib.Variants.NUnitProvider.IntegrationTests\Reqnroll.Contrib.Variants.NUnitProvider.IntegrationTests.csproj", "{A53BACE2-4044-4A32-BC70-B49621BD2FE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reqnroll.Contrib.Variants.UnitTests", "tests\Reqnroll.Contrib.Variants.UnitTests\Reqnroll.Contrib.Variants.UnitTests.csproj", "{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reqnroll.Contrib.Variants", "src\Reqnroll.Contrib.Variants\Reqnroll.Contrib.Variants.csproj", "{BC3F088F-84D2-4F8E-A433-66EFAFA71DE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reqnroll.Contrib.Variants.ReqnrollPlugin", "src\Reqnroll.Contrib.Variants.SpecFlowPlugin\Reqnroll.Contrib.Variants.ReqnrollPlugin.csproj", "{2D671486-4DD8-48B5-910C-6A01D2F80C3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59BD7EEC-4F82-482F-86F3-B5D8164805D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59BD7EEC-4F82-482F-86F3-B5D8164805D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59BD7EEC-4F82-482F-86F3-B5D8164805D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59BD7EEC-4F82-482F-86F3-B5D8164805D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4291AF82-ED50-42B5-8926-F4B5C35B32BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4291AF82-ED50-42B5-8926-F4B5C35B32BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4291AF82-ED50-42B5-8926-F4B5C35B32BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +33,18 @@ Global
 		{A53BACE2-4044-4A32-BC70-B49621BD2FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A53BACE2-4044-4A32-BC70-B49621BD2FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A53BACE2-4044-4A32-BC70-B49621BD2FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82CC2990-0DD5-41FD-B4C2-44FAB96CAF9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC3F088F-84D2-4F8E-A433-66EFAFA71DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC3F088F-84D2-4F8E-A433-66EFAFA71DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC3F088F-84D2-4F8E-A433-66EFAFA71DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC3F088F-84D2-4F8E-A433-66EFAFA71DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D671486-4DD8-48B5-910C-6A01D2F80C3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
