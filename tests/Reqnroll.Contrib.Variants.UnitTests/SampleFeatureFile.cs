@@ -1,4 +1,4 @@
-﻿namespace SpecFlow.Contrib.Variants.UnitTests
+﻿namespace Reqnroll.Contrib.Variants.UnitTests
 {
     internal static class SampleFeatureFile
     {

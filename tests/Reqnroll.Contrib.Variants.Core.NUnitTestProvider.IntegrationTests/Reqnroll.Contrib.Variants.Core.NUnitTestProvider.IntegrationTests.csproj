@@ -15,7 +15,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
     <PackageReference Include="Reqnroll.CustomPlugin" Version="2.2.1" />
     <PackageReference Include="Reqnroll.Tools.MsBuild.Generation" Version="2.2.1" />
-    <PackageReference Include="SpecFlow.Contrib.Variants" Version="3.9.90-pre.2" />
     <PackageReference Include="System.Security.Permissions" Version="7.0.0" />
   </ItemGroup>
 

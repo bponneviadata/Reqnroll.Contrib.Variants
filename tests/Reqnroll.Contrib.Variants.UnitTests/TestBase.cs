@@ -1,7 +1,7 @@
 ﻿using BoDi;
 using Gherkin.Ast;
 using Microsoft.CSharp;
-using SpecFlow.Contrib.Variants.Generator;
+using Reqnroll.Contrib.Variants.Generator;
 using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
@@ -14,22 +14,22 @@ using Reqnroll.Generator.UnitTestConverter;
 using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Parser;
 
-namespace SpecFlow.Contrib.Variants.UnitTests
+namespace Reqnroll.Contrib.Variants.UnitTests
 {
     public class TestBase
     {
         private IUnitTestGeneratorProvider _unitTestGeneratorProvider;
 
-        protected SpecFlowDocument CreateSpecFlowDocument(string document)
+        protected ReqnrollDocument CreateReqnrollDocument(string document)
         {
-            var parser = new SpecFlowGherkinParser(new CultureInfo("en-GB"));
+            var parser = new ReqnrollGherkinParser(new CultureInfo("en-GB"));
             using (var reader = new StringReader(document))
             {
-                return parser.Parse(reader, new SpecFlowDocumentLocation("Test"));
+                return parser.Parse(reader, new ReqnrollDocumentLocation("Test"));
             }
         }
 
-        protected CodeNamespace SetupFeatureGenerator<T>(SpecFlowDocument document, string testClassName = "TestClassName", string tagetNamespace = "Target.Namespace") where T : IUnitTestGeneratorProvider
+        protected CodeNamespace SetupFeatureGenerator<T>(ReqnrollDocument document, string testClassName = "TestClassName", string tagetNamespace = "Target.Namespace") where T : IUnitTestGeneratorProvider
         {
             var codeDomHelper = new CodeDomHelper(CodeDomProviderLanguage.CSharp);
             _unitTestGeneratorProvider = (T)Activator.CreateInstance(typeof(T), codeDomHelper, SampleFeatureFile.Variant);

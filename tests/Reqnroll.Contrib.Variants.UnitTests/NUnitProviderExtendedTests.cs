@@ -1,6 +1,6 @@
 ﻿using Gherkin.Ast;
-using SpecFlow.Contrib.Variants.Generator;
-using SpecFlow.Contrib.Variants.Providers;
+using Reqnroll.Contrib.Variants.Generator;
+using Reqnroll.Contrib.Variants.Providers;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using Reqnroll.Generator;
 using Reqnroll.Parser;
 using Xunit;
 
-namespace SpecFlow.Contrib.Variants.UnitTests
+namespace Reqnroll.Contrib.Variants.UnitTests
 {
     public class NUnitProviderExtendedTests : TestBase
     {
@@ -21,7 +21,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
         [InlineData(SampleFeatureFile.ScenarioTitle_TagsExamplesAndInlineData)]
         public void NUnitProviderExtended_ScenarioVariants_CorrectNumberOfMethodsGenerated(string scenarioName)
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             var scenario = document.GetScenario<Scenario>(scenarioName);
 
@@ -32,9 +32,9 @@ namespace SpecFlow.Contrib.Variants.UnitTests
         }
 
         [Fact]
-        public void NUnitProviderExtended_ScenarioVariants_SpecflowGeneratedCodeCompiles()
+        public void NUnitProviderExtended_ScenarioVariants_ReqnrollGeneratedCodeCompiles()
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             var assemblies = new[] { "BoDi.dll", "System.Core.dll", "Reqnroll.dll", "System.dll", "System.Runtime.dll", "nunit.framework.dll" };
 
@@ -174,7 +174,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
         [InlineData(SampleFeatureFile.ScenarioTitle_TagsExamplesAndInlineData, true, true, 7)]
         public void NUnitProviderExtended_ScenarioVariants_TestMethodHasInjectedVariant(string scenarioName, bool isoutline, bool hasVariants, int linNum)
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             var scenario = document.GetScenario<Scenario>(scenarioName);
 
@@ -210,9 +210,9 @@ namespace SpecFlow.Contrib.Variants.UnitTests
 
         #region Feature tags tests
         [Fact]
-        public void NUnitProviderExtended_FeatureVariants_SpecflowGeneratedCodeCompiles()
+        public void NUnitProviderExtended_FeatureVariants_ReqnrollGeneratedCodeCompiles()
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             var assemblies = new[] { "BoDi.dll", "System.Core.dll", "Reqnroll.dll", "System.dll", "System.Runtime.dll", "nunit.framework.dll" };
 
@@ -228,7 +228,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
         [InlineData(SampleFeatureFile.ScenarioTitle_TagsExamplesAndInlineData)]
         public void NUnitProviderExtended_FeatureVariants_CorrectNumberOfMethodsGenerated(string scenarioName)
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             var scenario = document.GetScenario<Scenario>(scenarioName);
 
@@ -334,7 +334,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
         [InlineData(SampleFeatureFile.ScenarioTitle_TagsExamplesAndInlineData, true)]
         public void NUnitProviderExtended_FeatureVariants_TestMethodHasInjectedVariant(string scenarioName, bool isoutline)
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             var scenario = document.GetScenario<Scenario>(scenarioName);
 
@@ -360,9 +360,9 @@ namespace SpecFlow.Contrib.Variants.UnitTests
 
         #region Negative tests
         [Fact]
-        public void NUnitProviderExtended_FeatureAndScenarioVariants_SpecflowGeneratedCodeCompileFails()
+        public void NUnitProviderExtended_FeatureAndScenarioVariants_ReqnrollGeneratedCodeCompileFails()
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithFeatureAndScenarioVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithFeatureAndScenarioVariantTags);
 
             Action act = () => SetupFeatureGenerator<NUnitProviderExtended>(document);
             var ex = Assert.Throws<TestGeneratorException>(act);
@@ -375,7 +375,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
         [Fact]
         public void NUnitProviderExtended_Regression_InlineTablesGeneratedCorrectly()
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             var scenario = document.GetScenario<ScenarioOutline>(SampleFeatureFile.ScenarioTitle_TagsExamplesAndInlineData);
             var testMethods = generatedCode.GetTestMethods(scenario);
@@ -404,10 +404,10 @@ namespace SpecFlow.Contrib.Variants.UnitTests
         [Fact]
         public void NUnitProviderExtended_Generation_CustomGenerationApplied()
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
 
-            var document2 = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
+            var document2 = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
             var generatedCode2 = SetupFeatureGenerator<NUnitProviderExtended>(document2);
 
             var customComment = generatedCode.Comments.Cast<CodeCommentStatement>()
@@ -422,7 +422,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
 
         private void TestSetupForAttributesForRowTests(out ScenarioOutline scenario, out CodeTypeMember testMethod, out IList<CodeAttributeDeclaration> testCaseAttributes, out IList<TableRow> tableBody)
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             scenario = document.GetScenario<ScenarioOutline>(SampleFeatureFile.ScenarioTitle_TagsAndExamples);
             testMethod = generatedCode.GetTestMethods(scenario).First();
@@ -432,7 +432,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
 
         private void TestSetupForAttributesForNonRowTests(out Scenario scenario, out IList<CodeTypeMember> testMethods)
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithScenarioVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             scenario = document.GetScenario<Scenario>(SampleFeatureFile.ScenarioTitle_Tags);
             testMethods = generatedCode.GetTestMethods(scenario);
@@ -440,7 +440,7 @@ namespace SpecFlow.Contrib.Variants.UnitTests
 
         private void TestSetupForAttributesFeature(out Feature feature, out ScenarioOutline scenario, out CodeTypeMember testMethod, out IList<CodeAttributeDeclaration> testCaseAttributes, out IList<TableRow> tableBody)
         {
-            var document = CreateSpecFlowDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
+            var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             scenario = document.GetScenario<ScenarioOutline>(SampleFeatureFile.ScenarioTitle_TagsAndExamples);
             feature = document.Feature;
