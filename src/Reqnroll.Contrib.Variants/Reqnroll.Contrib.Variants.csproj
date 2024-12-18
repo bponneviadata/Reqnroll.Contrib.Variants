@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+	  <TargetFramework>net481</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <AssemblyName>Reqnroll.Contrib.Variants.ReqnrollPlugin</AssemblyName>
