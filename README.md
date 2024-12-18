@@ -126,9 +126,9 @@ If using app.config (applicable only for .net framework), the custom variant key
 <configSections>
   <section name="reqnroll" type="Reqnroll.Configuration.ConfigurationSectionHandler, Reqnroll" />
 </configSections>
-<specFlow>
+<reqnroll>
   <generator path="VariantKey:Browser" />
-</specFlow>
+</reqnroll>
 ```
 This isn't the ideal element to use but was the best possibility we had, the path value is only treated as a variant if it starts with 'VariantKey:' meaning the generator element can be still be used as originally intended.
 
