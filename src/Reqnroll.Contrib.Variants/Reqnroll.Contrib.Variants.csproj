@@ -6,7 +6,7 @@
     <IsPackable>true</IsPackable>
     <AssemblyName>Reqnroll.Contrib.Variants.ReqnrollPlugin</AssemblyName>
     <PackageId>ViaData.Reqnroll.Variants</PackageId>
-    <Version>1.1.1</Version>
+    <Version>1.1.1-alpha</Version>
     <Authors>ViaData FieldService BV;Brian Ponne</Authors>
     <Copyright>Copyright 2024 ViaData FieldService BV</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -35,12 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\$(Configuration)\net461\Reqnroll.Contrib.Variants.ReqnrollPlugin.*" Pack="true" PackagePath="build\net461" />
+    <None Include="bin\$(Configuration)\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.*" Pack="true" PackagePath="build\net481" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\$(Configuration)\netstandard2.1\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll" Pack="true" PackagePath="build\netstandard2.1" />
-    <None Include="bin\$(Configuration)\netstandard2.1\Reqnroll.Contrib.Variants.ReqnrollPlugin.pdb" Pack="true" PackagePath="build\netstandard2.1" />
+    <None Include="bin\$(Configuration)\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll" Pack="true" PackagePath="build\net481" />
+    <None Include="bin\$(Configuration)\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.pdb" Pack="true" PackagePath="build\net481" />
   </ItemGroup>
   </Target>
 

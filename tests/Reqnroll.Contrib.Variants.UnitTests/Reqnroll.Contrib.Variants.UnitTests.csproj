@@ -293,10 +293,6 @@
     <Analyzer Include="..\..\packages\xunit.analyzers.1.1.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Reqnroll.Contrib.Variants.SpecFlowPlugin\Reqnroll.Contrib.Variants.ReqnrollPlugin.csproj">
-      <Project>{2d671486-4dd8-48b5-910c-6a01d2f80c3c}</Project>
-      <Name>Reqnroll.Contrib.Variants.ReqnrollPlugin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Reqnroll.Contrib.Variants\Reqnroll.Contrib.Variants.csproj">
       <Project>{bc3f088f-84d2-4f8e-a433-66efafa71de4}</Project>
       <Name>Reqnroll.Contrib.Variants</Name>

@@ -379,7 +379,7 @@ namespace Reqnroll.Contrib.Variants.UnitTests
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
             var scenario = document.GetScenario<ScenarioOutline>(SampleFeatureFile.ScenarioTitle_TagsExamplesAndInlineData);
             var testMethods = generatedCode.GetTestMethods(scenario);
-            var tableStep = scenario.Steps.First(a => a.Argument is DataTable).Argument as DataTable;
+            var tableStep = scenario.Steps.First(a => a.Argument is Gherkin.Ast.DataTable).Argument as Gherkin.Ast.DataTable;
             var tableRows = tableStep.Rows.ToList();
 
             foreach (var method in testMethods)

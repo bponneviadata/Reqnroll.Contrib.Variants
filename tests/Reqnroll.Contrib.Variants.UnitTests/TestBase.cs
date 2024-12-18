@@ -39,7 +39,7 @@ namespace Reqnroll.Contrib.Variants.UnitTests
 
         private IFeatureGenerator FeatureGenerator(CodeDomHelper codeDomHelper)
         {
-            var dr = new DecoratorRegistry(new ObjectContainer());
+            var dr = new DecoratorRegistry(new BoDi.ObjectContainer());
             var runtimeConfiguration = ConfigurationLoader.GetDefault();
             runtimeConfiguration.AllowDebugGeneratedFiles = true;
 
