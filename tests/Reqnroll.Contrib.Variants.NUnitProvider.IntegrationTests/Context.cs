@@ -1,6 +1,7 @@
-﻿using TechTalk.SpecFlow;
+﻿using NUnit.Framework;
+using Reqnroll;
 
-namespace SpecFlow.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests
+namespace Reqnroll.Contrib.Variants.NUnitProvider.IntegrationTests
 {
     [Binding]
     public class Context
@@ -15,6 +16,9 @@ namespace SpecFlow.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests
         [BeforeScenario]
         public void Before()
         {
+            string b;
+             _scenarioContext.TryGetValue("Variant", out b);
+            _scenarioContext["Browser"] = b;
             _scenarioContext.Add("Namespace", GetType().Namespace);
 
             /// <summary>

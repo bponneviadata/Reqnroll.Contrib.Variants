@@ -5,7 +5,7 @@ Feature: NUnitDemoFeatureTests
 	As a developer
 	I want to be able to run integration tests to validate the plugin
 
-Background: 
+Background:
 	Given I am on the home page
 
 Scenario: A single test without examples or tags

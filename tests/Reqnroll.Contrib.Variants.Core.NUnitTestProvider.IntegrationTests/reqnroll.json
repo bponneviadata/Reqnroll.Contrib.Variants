@@ -14,6 +14,6 @@
     "variantkey": "Browser"
   },
   "stepAssemblies": [
-    { "assembly": "SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings" }
+    { "assembly": "Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings" }
   ]
 }
