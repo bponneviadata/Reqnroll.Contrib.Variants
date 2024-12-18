@@ -124,7 +124,7 @@ If using app.config (applicable only for .net framework), the custom variant key
 
 ```XML
 <configSections>
-  <section name="specFlow" type="TechTalk.SpecFlow.Configuration.ConfigurationSectionHandler, TechTalk.SpecFlow" />
+  <section name="reqnroll" type="Reqnroll.Configuration.ConfigurationSectionHandler, Reqnroll" />
 </configSections>
 <specFlow>
   <generator path="VariantKey:Browser" />
