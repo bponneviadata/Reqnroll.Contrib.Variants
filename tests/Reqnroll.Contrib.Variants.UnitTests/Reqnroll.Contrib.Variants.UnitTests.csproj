@@ -88,6 +88,9 @@
     <Reference Include="Reqnroll, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reqnroll.2.2.1\lib\netstandard2.0\Reqnroll.dll</HintPath>
     </Reference>
+    <Reference Include="Reqnroll.Contrib.Variants.ReqnrollPlugin, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ViaData.Reqnroll.Variants.1.1.1-alpha\lib\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll</HintPath>
+    </Reference>
     <Reference Include="Reqnroll.Generator, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reqnroll.CustomPlugin.2.2.1\lib\netstandard2.0\Reqnroll.Generator.dll</HintPath>
     </Reference>
@@ -291,12 +294,6 @@
   <ItemGroup>
     <Analyzer Include="..\..\packages\xunit.analyzers.1.1.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
     <Analyzer Include="..\..\packages\xunit.analyzers.1.1.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Reqnroll.Contrib.Variants\Reqnroll.Contrib.Variants.csproj">
-      <Project>{bc3f088f-84d2-4f8e-a433-66efafa71de4}</Project>
-      <Name>Reqnroll.Contrib.Variants</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
