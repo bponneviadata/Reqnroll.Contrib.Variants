@@ -2,11 +2,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("SpecFlow.Contrib.Variants.UnitTests")]
+[assembly: AssemblyTitle("Reqnroll.Contrib.Variants.UnitTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SpecFlow.Contrib.Variants.UnitTests")]
+[assembly: AssemblyProduct("Reqnroll.Contrib.Variants.UnitTests")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -33,9 +33,9 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin
             var codeDomHelper = objectContainer.Resolve<CodeDomHelper>(language);
             var decoratorRegistry = objectContainer.Resolve<DecoratorRegistry>();
 
-            // Resolve specflow configuration to confirm custom variant key, use default if none provided
+            // Resolve reqnroll configuration to confirm custom variant key, use default if none provided
             var specflowConfiguration = objectContainer.Resolve<ReqnrollConfiguration>();
-            var configParam = "Tenant";//specflowConfiguration.Plugins.FirstOrDefault(a => a.Name == GetType().Namespace.Replace(".SpecFlowPlugin", string.Empty))?.Parameters;
+            var configParam = "Tenant";//reqnrollConfiguration.Plugins.FirstOrDefault(a => a.Name == GetType().Namespace.Replace(".ReqnrollPlugin", string.Empty))?.Parameters;
             _variantKey = !string.IsNullOrEmpty(configParam) ? configParam : _variantKey;
 
             // Create custom unit test provider based on user defined config value

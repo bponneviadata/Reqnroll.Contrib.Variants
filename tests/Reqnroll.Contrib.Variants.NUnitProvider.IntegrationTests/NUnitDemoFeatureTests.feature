@@ -1,7 +1,7 @@
 ﻿@Variant:Chrome
 @Variant:Edge
 Feature: NUnitDemoFeatureTests
-	In order to verify the SpecFlow variants plugin for features
+	In order to verify the Reqnroll variants plugin for features
 	As a developer
 	I want to be able to run integration tests to validate the plugin
 

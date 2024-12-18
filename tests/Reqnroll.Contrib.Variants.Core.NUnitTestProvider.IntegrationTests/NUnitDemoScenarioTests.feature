@@ -1,5 +1,5 @@
 ﻿Feature: NUnitDemoScenarioTests
-	In order to verify the SpecFlow variants plugin for scenarios
+	In order to verify the Reqnroll variants plugin for scenarios
 	As a developer
 	I want to be able to run integration tests to validate the plugin
 

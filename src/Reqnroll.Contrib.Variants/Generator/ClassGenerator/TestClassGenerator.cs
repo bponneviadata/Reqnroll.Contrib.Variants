@@ -39,7 +39,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
                 targetNamespace = $"GlobalVBNetNamespace.{targetNamespace}";
             CodeNamespace = new CodeNamespace(targetNamespace)
             {
-                Imports = { new CodeNamespaceImport("TechTalk.Reqnroll") }
+                Imports = { new CodeNamespaceImport("Reqnroll") }
             };
         }
 

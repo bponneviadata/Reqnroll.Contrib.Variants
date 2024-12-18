@@ -36,12 +36,12 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
 
         public void CreateNamespace(string targetNamespace)
         {
-            targetNamespace = targetNamespace ?? "SpecFlowTests";
+            targetNamespace = targetNamespace ?? "ReqnrollTests";
             if (!targetNamespace.StartsWith("global", StringComparison.CurrentCultureIgnoreCase) && _codeDomHelper.TargetLanguage == CodeDomProviderLanguage.VB)
                 targetNamespace = $"GlobalVBNetNamespace.{targetNamespace}";
             CodeNamespace = new CodeNamespace(targetNamespace)
             {
-                Imports = { new CodeNamespaceImport("TechTalk.Reqnroll") }
+                Imports = { new CodeNamespaceImport("Reqnroll") }
             };
         }
 

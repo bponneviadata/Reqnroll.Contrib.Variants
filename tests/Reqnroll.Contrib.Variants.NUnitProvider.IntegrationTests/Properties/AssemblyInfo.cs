@@ -1,11 +1,11 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("SpecFlow.Contrib.Variants.NUnitProvider.IntegrationTests")]
+[assembly: AssemblyTitle("Reqnroll.Contrib.Variants.NUnitProvider.IntegrationTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SpecFlow.Contrib.Variants.NUnitProvider.IntegrationTests")]
+[assembly: AssemblyProduct("Reqnroll.Contrib.Variants.NUnitProvider.IntegrationTests")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
