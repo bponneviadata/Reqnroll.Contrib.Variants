@@ -1,5 +1,4 @@
-﻿using BoDi;
-using Gherkin.Ast;
+﻿using Gherkin.Ast;
 using Microsoft.CSharp;
 using Reqnroll.Contrib.Variants.Generator;
 using System;

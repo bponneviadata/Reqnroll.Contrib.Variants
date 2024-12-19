@@ -28,7 +28,7 @@ namespace Reqnroll.Contrib.Variants.Providers
 
         public void SetTestClass(TestClassGenerationContext generationContext, string featureTitle, string featureDescription)
         {
-            //var newFeatureDescription = string.IsNullOrEmpty(featureDescription) ? featureTitle : featureDescription;
+            var newFeatureDescription = string.IsNullOrEmpty(featureDescription) ? featureTitle : featureDescription;
             _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.TestFixtureAttribute");
             _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.DescriptionAttribute", featureTitle);
         }
@@ -48,10 +48,10 @@ namespace Reqnroll.Contrib.Variants.Providers
             _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.IgnoreAttribute", new object[1] { "Ignored feature" });
         }
 
-        //public void SetTestClassParallelize(TestClassGenerationContext generationContext)
-        //{
-        //    _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.ParallelizableAttribute");
-        //}
+        public void SetTestClassParallelize(TestClassGenerationContext generationContext)
+        {
+            _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.ParallelizableAttribute");
+        }
 
         public void SetTestClassNonParallelizable(TestClassGenerationContext generationContext)
         {
@@ -146,15 +146,12 @@ namespace Reqnroll.Contrib.Variants.Providers
         }
 
         public void SetTestMethodAsRow(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, string scenarioTitle, string exampleSetName, string variantName, IEnumerable<KeyValuePair<string, string>> arguments)
-        {
-        }
+        { }
 
         public void SetRowTest(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, string scenarioTitle)
-        {
-        }
+        { }
 
         public void MarkCodeMethodInvokeExpressionAsAwait(CodeMethodInvokeExpression expression)
-        {
-        }
+        { }
     }
 }

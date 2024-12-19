@@ -28,7 +28,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
             AddLineDirective(statements, background.Location, reqnrollConfiguration, codeDomHelper);
         }
 
-        public static void AddLineDirective(this CodeDomHelper codeDomHelper, StepsContainer scenarioDefinition, CodeStatementCollection statements, ReqnrollConfiguration reqnrollConfiguration) // CHANGED FROM ScenarioDefinitio to StepsContainter
+        public static void AddLineDirective(this CodeDomHelper codeDomHelper, StepsContainer scenarioDefinition, CodeStatementCollection statements, ReqnrollConfiguration reqnrollConfiguration)
         {
             AddLineDirective(statements, scenarioDefinition.Location, reqnrollConfiguration, codeDomHelper);
         }

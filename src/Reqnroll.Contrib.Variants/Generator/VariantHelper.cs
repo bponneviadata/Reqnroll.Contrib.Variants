@@ -22,7 +22,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             return tags;
         }
 
-        public List<string> GetScenarioVariantTagValues(StepsContainer scenario) // CHANGED FOM ScenarioDefinition
+        public List<string> GetScenarioVariantTagValues(StepsContainer scenario)
         {
             return scenario.GetTags()?.Where(a => a.Name.StartsWith($"@{VariantKey}"))?.Select(a => a.Name.Split(':')[1]).ToList();
         }
