@@ -4,17 +4,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Reqnroll;
 using Reqnroll.Configuration;
 using Reqnroll.Generator;
 using Reqnroll.Generator.CodeDom;
 using Reqnroll.Generator.UnitTestConverter;
 using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Parser;
-using Reqnroll.Utils;
-using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator;
 
-namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
+namespace Reqnroll.Contrib.Variants.ReqnrollPlugin.Generator.ClassGenerator
 {
     internal class TestClassGenerator : ITestClassGenerator
     {
@@ -24,14 +21,14 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
         private readonly IDecoratorRegistry _decoratorRegistry;
         private readonly IUnitTestGeneratorProvider _testGeneratorProvider;
         private readonly CodeDomHelper _codeDomHelper;
-        private readonly ReqnrollConfiguration _specFlowConfiguration;
+        private readonly ReqnrollConfiguration _reqnrollConfiguration;
 
         public TestClassGenerator(IDecoratorRegistry decoratorRegistry, IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration specFlowConfiguration)
         {
             _decoratorRegistry = decoratorRegistry;
             _testGeneratorProvider = testGeneratorProvider;
             _codeDomHelper = codeDomHelper;
-            _specFlowConfiguration = specFlowConfiguration;
+            _reqnrollConfiguration = specFlowConfiguration;
         }
 
         public void CreateNamespace(string targetNamespace)
@@ -49,14 +46,14 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator
         {
             var generatedTypeDeclaration = _codeDomHelper.CreateGeneratedTypeDeclaration(testClassName);
             CodeNamespace.Types.Add(generatedTypeDeclaration);
-            GenerationContext = new TestClassGenerationContext(_testGeneratorProvider, document, CodeNamespace, generatedTypeDeclaration, generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), document.ReqnrollFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null, _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _specFlowConfiguration.AllowRowTests);
+            GenerationContext = new TestClassGenerationContext(_testGeneratorProvider, document, CodeNamespace, generatedTypeDeclaration, generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), document.ReqnrollFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null, _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _reqnrollConfiguration.AllowRowTests);
         }
 
         public void SetupTestClass()
         {
             GenerationContext.TestClass.IsPartial = true;
             GenerationContext.TestClass.TypeAttributes |= TypeAttributes.Public;
-            _codeDomHelper.AddLinePragmaInitial(GenerationContext.TestClass, GenerationContext.Document.SourceFilePath, _specFlowConfiguration);
+            _codeDomHelper.AddLinePragmaInitial(GenerationContext.TestClass, GenerationContext.Document.SourceFilePath, _reqnrollConfiguration);
             _testGeneratorProvider.SetTestClass(GenerationContext, GenerationContext.Feature.Name, GenerationContext.Feature.Description);
             _decoratorRegistry.DecorateTestClass(GenerationContext, out List<string> unprocessedTags);
             if (!unprocessedTags.Any())

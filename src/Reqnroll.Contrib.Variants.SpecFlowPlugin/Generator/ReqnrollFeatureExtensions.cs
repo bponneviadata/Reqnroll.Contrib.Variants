@@ -7,7 +7,7 @@ using Reqnroll.Generator;
 using Reqnroll.Parser;
 using Reqnroll.Tracing;
 
-namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
+namespace Reqnroll.Contrib.Variants.ReqnrollPlugin.Generator
 {
     internal static class ReqnrollFeatureExtensions
     {
@@ -69,8 +69,8 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
 
         public static ReqnrollStep AsReqnrollStep(this Step step)
         {
-            if (step is ReqnrollStep specFlowStep) return specFlowStep;
-            throw new TestGeneratorException("The step must be a SpecFlowStep.");
+            if (step is ReqnrollStep reqnrollStep) return reqnrollStep;
+            throw new TestGeneratorException("The step must be a ReqnrollStep.");
         }
     }
 }

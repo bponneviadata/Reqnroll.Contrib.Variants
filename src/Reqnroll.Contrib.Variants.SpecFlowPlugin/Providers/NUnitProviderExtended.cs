@@ -1,14 +1,11 @@
-﻿using Gherkin.Ast;
-using System;
-using System.CodeDom;
+﻿using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using Reqnroll.Generator;
 using Reqnroll.Generator.CodeDom;
 using Reqnroll.Generator.UnitTestProvider;
-using Reqnroll.Utils;
 
-namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Providers
+namespace Reqnroll.Contrib.Variants.ReqnrollPlugin.Providers
 {
     internal class NUnitProviderExtended : IUnitTestGeneratorProvider
     {
@@ -133,12 +130,10 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Providers
         }
 
         public void SetTestMethodAsRow(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, string scenarioTitle, string exampleSetName, string variantName, IEnumerable<KeyValuePair<string, string>> arguments)
-        {
-        }
+        { }
 
         public void SetRowTest(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, string scenarioTitle)
-        {
-        }
+        { }
 
         public void SetTestClassNonParallelizable(TestClassGenerationContext generationContext)
         {

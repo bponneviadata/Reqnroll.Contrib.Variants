@@ -2,13 +2,13 @@
 <package>
   <metadata>
     <id>Reqnroll.Contrib.Variants</id>
-    <version>1.1.1-alpha</version>
+    <version>1.1.2-alpha</version>
     <title>Reqnroll.Contrib.Variants</title>
     <authors>ViaData fieldService BV</authors>
     <owners>Brian Ponne</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/bponneviadata/Reqnroll.Contrib.Variants</projectUrl>
-    <iconUrl>https://api.nuget.org/v3-flatcontainer/viadata.reqnroll.variants/1.1.1-alpha/icon</iconUrl>
+    <iconUrl>https://api.nuget.org/v3-flatcontainer/viadata.reqnroll.variants/1.1.2-alpha/icon</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extends Reqnroll to allow variants of a test to be run using tags - for example running scenarios against different browsers.</description>
     <releaseNotes>Support for Reqnroll v2.4 and v2.4.1</releaseNotes>
@@ -24,7 +24,7 @@
   <files>
     <file src="Transforms\app.config.install.xdt" target="content\app.config.install.xdt" />
     <file src="Transforms\app.config.uninstall.xdt" target="content\app.config.uninstall.xdt" />
-    <file src="bin\$configuration$\Reqnroll.Contrib.Variants.SpecFlowPlugin.dll" target="lib\net481" />
-    <file src="bin\$configuration$\Reqnroll.Contrib.Variants.SpecFlowPlugin.pdb" target="lib\net481" />
+    <file src="bin\$configuration$\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll" target="lib\net481" />
+    <file src="bin\$configuration$\Reqnroll.Contrib.Variants.ReqnrollPlugin.pdb" target="lib\net481" />
   </files>
 </package>

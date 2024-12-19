@@ -16,7 +16,7 @@
     <PackageReference Include="Reqnroll.CustomPlugin" Version="2.2.1" />
     <PackageReference Include="Reqnroll.Tools.MsBuild.Generation" Version="2.2.1" />
     <PackageReference Include="System.Security.Permissions" Version="7.0.0" />
-    <PackageReference Include="ViaData.Reqnroll.Variants" Version="1.1.1-alpha" />
+    <PackageReference Include="ViaData.Reqnroll.Variants" Version="1.1.2-alpha" />
   </ItemGroup>
 
   <ItemGroup>

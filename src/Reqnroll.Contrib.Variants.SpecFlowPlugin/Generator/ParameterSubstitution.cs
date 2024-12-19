@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
+namespace Reqnroll.Contrib.Variants.ReqnrollPlugin.Generator
 {
     internal class ParameterSubstitution : List<KeyValuePair<string, string>>
     {

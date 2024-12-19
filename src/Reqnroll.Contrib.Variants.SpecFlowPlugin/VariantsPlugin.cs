@@ -1,20 +1,17 @@
-﻿using Reqnroll.Contrib.Variants.SpecFlowPlugin;
-using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator;
-using Reqnroll.Contrib.Variants.SpecFlowPlugin.Providers;
-using System.Linq;
+﻿using Reqnroll.Contrib.Variants.ReqnrollPlugin;
+using Reqnroll.Contrib.Variants.ReqnrollPlugin.Generator;
+using Reqnroll.Contrib.Variants.ReqnrollPlugin.Providers;
 using Reqnroll.Configuration;
 using Reqnroll.Generator.CodeDom;
 using Reqnroll.Generator.Interfaces;
 using Reqnroll.Generator.Plugins;
 using Reqnroll.Generator.UnitTestConverter;
-using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Infrastructure;
-using Reqnroll.Utils;
 using Reqnroll.UnitTestProvider;
 
 [assembly: GeneratorPlugin(typeof(VariantsPlugin))]
 
-namespace Reqnroll.Contrib.Variants.SpecFlowPlugin
+namespace Reqnroll.Contrib.Variants.ReqnrollPlugin
 {
     public class VariantsPlugin : IGeneratorPlugin
     {
@@ -34,7 +31,7 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin
             var decoratorRegistry = objectContainer.Resolve<DecoratorRegistry>();
 
             // Resolve reqnroll configuration to confirm custom variant key, use default if none provided
-            var specflowConfiguration = objectContainer.Resolve<ReqnrollConfiguration>();
+            var reqnrollConfiguration = objectContainer.Resolve<ReqnrollConfiguration>();
             var configParam = "Tenant";//reqnrollConfiguration.Plugins.FirstOrDefault(a => a.Name == GetType().Namespace.Replace(".ReqnrollPlugin", string.Empty))?.Parameters;
             _variantKey = !string.IsNullOrEmpty(configParam) ? configParam : _variantKey;
 
@@ -42,7 +39,7 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin
             var generatorProvider = new NUnitProviderExtended(codeDomHelper, _variantKey);
 
             // Create generator instance to be registered and replace original
-            var customFeatureGenerator = new FeatureGeneratorExtended(generatorProvider, codeDomHelper, specflowConfiguration, decoratorRegistry, _variantKey);
+            var customFeatureGenerator = new FeatureGeneratorExtended(generatorProvider, codeDomHelper, reqnrollConfiguration, decoratorRegistry, _variantKey);
             var customFeatureGeneratorProvider = new FeatureGeneratorProviderExtended(customFeatureGenerator);
 
             // Register dependencies

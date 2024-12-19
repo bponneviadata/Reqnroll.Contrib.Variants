@@ -1,11 +1,10 @@
 ﻿using Gherkin.Ast;
-using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator;
-using Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator.ClassGenerator;
+using Reqnroll.Contrib.Variants.ReqnrollPlugin.Generator;
+using Reqnroll.Contrib.Variants.ReqnrollPlugin.Generator.ClassGenerator;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Reqnroll;
 using Reqnroll.Configuration;
 using Reqnroll.Generator;
 using Reqnroll.Generator.CodeDom;
@@ -13,42 +12,38 @@ using Reqnroll.Generator.UnitTestConverter;
 using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Parser;
 using Reqnroll.Tracing;
-using Reqnroll.Utils;
-using DataTable = Gherkin.Ast.DataTable;
 
 [assembly: InternalsVisibleTo("Reqnroll.Contrib.Variants.UnitTests")]
-namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
+namespace Reqnroll.Contrib.Variants.ReqnrollPlugin.Generator
 {
     internal class FeatureGeneratorExtended : TestClassGenerator, IFeatureGenerator
     {
         private readonly IUnitTestGeneratorProvider _testGeneratorProvider;
         private readonly CodeDomHelper _codeDomHelper;
-        private readonly ReqnrollConfiguration _specFlowConfiguration;
+        private readonly ReqnrollConfiguration _reqnrollConfiguration;
         private readonly IDecoratorRegistry _decoratorRegistry;
         private int _tableCounter;
 
-        //NEW CODE START
         private readonly VariantHelper _variantHelper;
         private List<Tag> _featureVariantTags;
         private bool _setVariantToContextForOutlineTest;
         private bool _setVariantToContextForTest;
         private string _variantValue;
-        //NEW CODE END
 
-        public FeatureGeneratorExtended(IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration specFlowConfiguration, IDecoratorRegistry decoratorRegistry, string variantKey)
-            : base(decoratorRegistry, testGeneratorProvider, codeDomHelper, specFlowConfiguration)
+        public FeatureGeneratorExtended(IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration reqnrollConfiguration, IDecoratorRegistry decoratorRegistry, string variantKey)
+            : base(decoratorRegistry, testGeneratorProvider, codeDomHelper, reqnrollConfiguration)
         {
             _testGeneratorProvider = testGeneratorProvider;
             _codeDomHelper = codeDomHelper;
-            _specFlowConfiguration = specFlowConfiguration;
+            _reqnrollConfiguration = reqnrollConfiguration;
             _decoratorRegistry = decoratorRegistry;
-            _variantHelper = new VariantHelper(variantKey); //NEW CODE
+            _variantHelper = new VariantHelper(variantKey);
         }
 
         public CodeNamespace GenerateUnitTestFixture(ReqnrollDocument document, string testClassName, string targetNamespace)
         {
-            var specFlowFeature = document.ReqnrollFeature;
-            testClassName = testClassName ?? $"{specFlowFeature.Name.ToIdentifier()}Feature";
+            var reqnrollFeature = document.ReqnrollFeature;
+            testClassName = testClassName ?? $"{reqnrollFeature.Name.ToIdentifier()}Feature";
             CreateNamespace(targetNamespace);
             CreateTestClassStructure(testClassName, document);
 
@@ -63,23 +58,19 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
             SetupFeatureBackground(GenerationContext);
             SetupScenarioCleanupMethod(GenerationContext);
 
+            var variantTags = _variantHelper.GetFeatureVariantTagValues(reqnrollFeature);
+            _featureVariantTags = _variantHelper.FeatureTags(reqnrollFeature);
 
-            //NEW CODE START
-            var variantTags = _variantHelper.GetFeatureVariantTagValues(specFlowFeature);
-            _featureVariantTags = _variantHelper.FeatureTags(specFlowFeature);
-
-            if (_variantHelper.AnyScenarioHasVariantTag(specFlowFeature) && _variantHelper.FeatureHasVariantTags)
+            if (_variantHelper.AnyScenarioHasVariantTag(reqnrollFeature) && _variantHelper.FeatureHasVariantTags)
                 throw new TestGeneratorException("Variant tags were detected at feature and scenario level, please specify at one level or the other.");
-            //NEW CODE END
 
-            foreach (var scenarioDefinition in specFlowFeature.ScenarioDefinitions)
+            foreach (var scenarioDefinition in reqnrollFeature.ScenarioDefinitions)
             {
                 if (string.IsNullOrEmpty(scenarioDefinition.Name))
                     throw new TestGeneratorException("The scenario must have a title specified.");
 
                 if (scenarioDefinition is ScenarioOutline scenarioOutline)
                 {
-                    //NEW CODE START
                     variantTags = _variantHelper.FeatureHasVariantTags ? variantTags : _variantHelper.GetScenarioVariantTagValues(scenarioDefinition);
                     GenerateScenarioOutlineTest(GenerationContext, scenarioOutline, variantTags);
                 }
@@ -88,7 +79,6 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
                     variantTags = _variantHelper.FeatureHasVariantTags ? variantTags : _variantHelper.GetScenarioVariantTagValues(scenarioDefinition);
                     if (variantTags.Count > 0) { variantTags.ForEach(a => GenerateTest(GenerationContext, (Scenario)scenarioDefinition, a)); }
                     else { GenerateTest(GenerationContext, (Scenario)scenarioDefinition, null); }
-                    //NEW CODE END
                 }
             }
             _testGeneratorProvider.FinalizeTestClass(GenerationContext);
@@ -121,10 +111,10 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
             backgroundMethod.Attributes = MemberAttributes.Public;
             backgroundMethod.Name = "FeatureBackground";
             var background = generationContext.Feature.Background;
-            _codeDomHelper.AddLineDirective(background, backgroundMethod.Statements, _specFlowConfiguration);
+            _codeDomHelper.AddLineDirective(background, backgroundMethod.Statements, _reqnrollConfiguration);
             foreach (var step in background.Steps)
                 GenerateStep(backgroundMethod, step, null);
-            _codeDomHelper.AddLineDirectiveHidden(backgroundMethod.Statements, _specFlowConfiguration);
+            _codeDomHelper.AddLineDirectiveHidden(backgroundMethod.Statements, _reqnrollConfiguration);
         }
 
         private void SetupScenarioInitializeMethod(TestClassGenerationContext generationContext)
@@ -146,7 +136,6 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
             var identifierMapping = scenarioOutline.CreateParamToIdentifierMapping();
             var outlineTestMethod = CreateScenarioOutlineTestMethod(generationContext, scenarioOutline, identifierMapping);
 
-            //NEW CODE START
             if (generationContext.GenerateRowTests)
             {
                 if (variantTags?.Count > 0)
@@ -161,7 +150,6 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
                 else
                     GenerateScenarioOutlineExamplesAsIndividualMethods(scenarioOutline, generationContext, outlineTestMethod, identifierMapping, null);
             }
-            //NEW CODE END
 
             var referenceExpression = new CodeVariableReferenceExpression("exampleTags");
             GenerateTestBody(generationContext, scenarioOutline, outlineTestMethod, referenceExpression, identifierMapping);
@@ -203,7 +191,6 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
             SetupTestMethod(generationContext, scenatioOutlineTestMethod, scenarioOutline, null, null, null, true);
             foreach (var example in scenarioOutline.Examples)
             {
-                //NEW CODE START
                 var hasVariantTags = variantTags?.Count > 0;
 
                 if (hasVariantTags)
@@ -230,7 +217,6 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
                         var arguments = tableRow.Cells.Select(c => c.Value).ToList();
                         _testGeneratorProvider.SetRow(generationContext, scenatioOutlineTestMethod, arguments, example.Tags.GetTagsExcept("@Ignore"), example.Tags.HasTag("@Ignore"));
                     }
-                    //NEW CODE END
                 }
             }
         }
@@ -250,22 +236,20 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
         {
             variantName = string.IsNullOrEmpty(tag) ? variantName : $"{variantName}_{tag}";
             var testMethod = CreateTestMethod(generationContext, scenarioOutline, exampleSetTags, variantName, exampleSetIdentifier);
-            _codeDomHelper.AddLineDirective(scenarioOutline, testMethod.Statements, _specFlowConfiguration);
+            _codeDomHelper.AddLineDirective(scenarioOutline, testMethod.Statements, _reqnrollConfiguration);
             var list1 = new List<CodeExpression>();
             list1.AddRange(row.Cells.Select(paramCell => new CodePrimitiveExpression(paramCell.Value)).Cast<CodeExpression>().ToList());
             list1.Add(exampleSetTags.GetStringArrayExpression());
 
-            //// NEW CODE START
             if (tag != null)
             {
                 var s = new CodePrimitiveExpression(tag);
                 list1.Add(s);
                 _setVariantToContextForOutlineTest = true;
             }
-            //// NEW CODE END
 
             testMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), scenatioOutlineTestMethod.Name, list1.ToArray()));
-            _codeDomHelper.AddLineDirectiveHidden(testMethod.Statements, _specFlowConfiguration);
+            _codeDomHelper.AddLineDirectiveHidden(testMethod.Statements, _reqnrollConfiguration);
             var list2 = paramToIdentifier.Select((p2i, paramIndex) => new KeyValuePair<string, string>(p2i.Key, row.Cells.ElementAt(paramIndex).Value)).ToList();
             _testGeneratorProvider.SetTestMethodAsRow(generationContext, testMethod, scenarioOutline.Name, exampleSetTitle, variantName, list2);
         }
@@ -279,7 +263,6 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
 
         private void GenerateTest(TestClassGenerationContext generationContext, Scenario scenario, string tag = null)
         {
-            // NEW CODE START
             string variantName = null;
             if (!string.IsNullOrEmpty(tag))
             {
@@ -287,7 +270,6 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
                 _setVariantToContextForTest = true;
                 _variantValue = tag;
             }
-            // NEW CODE END
 
             var testMethod = CreateTestMethod(generationContext, scenario, null, variantName, null);
             GenerateTestBody(generationContext, scenario, testMethod, null, null);
@@ -324,13 +306,12 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
                 new CodePrimitiveExpression(scenario.Description),
                 left
             })));
-            _codeDomHelper.AddLineDirective(scenario, testMethod.Statements, _specFlowConfiguration);
+            _codeDomHelper.AddLineDirective(scenario, testMethod.Statements, _reqnrollConfiguration);
             testMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), generationContext.ScenarioInitializeMethod.Name, new CodeExpression[1]
             {
                 new CodeVariableReferenceExpression("scenarioInfo")
             }));
 
-            //// NEW CODE START
             if (_setVariantToContextForOutlineTest)
             {
                 testMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodePropertyReferenceExpression(new CodeFieldReferenceExpression(null, generationContext.TestRunnerField.Name), "ScenarioContext"), "Add", null), new CodeExpression[2]
@@ -354,17 +335,16 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
             _setVariantToContextForOutlineTest = false;
             _setVariantToContextForTest = false;
             _variantValue = null;
-            //// NEW CODE END
 
             testMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), generationContext.ScenarioStartMethod.Name, new CodeExpression[0]));
             if (generationContext.Feature.HasFeatureBackground())
             {
-                _codeDomHelper.AddLineDirective(generationContext.Feature.Background, testMethod.Statements, _specFlowConfiguration);
+                _codeDomHelper.AddLineDirective(generationContext.Feature.Background, testMethod.Statements, _reqnrollConfiguration);
                 testMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), generationContext.FeatureBackgroundMethod.Name, new CodeExpression[0]));
             }
             foreach (var step in scenario.Steps)
                 GenerateStep(testMethod, step, paramToIdentifier);
-            _codeDomHelper.AddLineDirectiveHidden(testMethod.Statements, _specFlowConfiguration);
+            _codeDomHelper.AddLineDirectiveHidden(testMethod.Statements, _reqnrollConfiguration);
             testMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), generationContext.ScenarioCleanupMethod.Name, new CodeExpression[0]));
         }
 
@@ -375,7 +355,7 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
             var str = scenarioDefinition.Name;
             if (variantName != null)
             {
-                if (variantName.IndexOf("_") == 0) { variantName = variantName.Remove(0, 1); } //NEW CODE
+                if (variantName.IndexOf("_") == 0) { variantName = variantName.Remove(0, 1); }
                 str = $"{scenarioDefinition.Name}: {variantName}";
             }
             if (rowTest)
@@ -392,16 +372,16 @@ namespace Reqnroll.Contrib.Variants.SpecFlowPlugin.Generator
 
         private void GenerateStep(CodeMemberMethod testMethod, Step gherkinStep, ParameterSubstitution paramToIdentifier)
         {
-            var specFlowStep = gherkinStep.AsReqnrollStep();
-            var codeExpressionList = new List<CodeExpression> { paramToIdentifier.GetSubstitutedString(specFlowStep.Text) };
-            if (specFlowStep.Argument != null)
-                _codeDomHelper.AddLineDirectiveHidden(testMethod.Statements, _specFlowConfiguration);
-            codeExpressionList.Add(paramToIdentifier.GetSubstitutedString((specFlowStep.Argument as DocString)?.Content));
-            codeExpressionList.Add(GetTableArgExpression(specFlowStep.Argument as Gherkin.Ast.DataTable, testMethod.Statements, paramToIdentifier));
-            codeExpressionList.Add(new CodePrimitiveExpression(specFlowStep.Keyword));
-            _codeDomHelper.AddLineDirective(specFlowStep, testMethod.Statements, _specFlowConfiguration);
+            var reqnrollStep = gherkinStep.AsReqnrollStep();
+            var codeExpressionList = new List<CodeExpression> { paramToIdentifier.GetSubstitutedString(reqnrollStep.Text) };
+            if (reqnrollStep.Argument != null)
+                _codeDomHelper.AddLineDirectiveHidden(testMethod.Statements, _reqnrollConfiguration);
+            codeExpressionList.Add(paramToIdentifier.GetSubstitutedString((reqnrollStep.Argument as DocString)?.Content));
+            codeExpressionList.Add(GetTableArgExpression(reqnrollStep.Argument as Gherkin.Ast.DataTable, testMethod.Statements, paramToIdentifier));
+            codeExpressionList.Add(new CodePrimitiveExpression(reqnrollStep.Keyword));
+            _codeDomHelper.AddLineDirective(reqnrollStep, testMethod.Statements, _reqnrollConfiguration);
             var runnerExpression = GetTestRunnerExpression();
-            testMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, specFlowStep.StepKeyword.ToString(), codeExpressionList.ToArray()));
+            testMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, reqnrollStep.StepKeyword.ToString(), codeExpressionList.ToArray()));
         }
 
         private string GetTestMethodName(StepsContainer scenario, string variantName, string exampleSetIdentifier)

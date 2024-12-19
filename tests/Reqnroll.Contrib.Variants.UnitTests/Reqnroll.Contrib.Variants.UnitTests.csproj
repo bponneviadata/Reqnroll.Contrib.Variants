@@ -88,8 +88,8 @@
     <Reference Include="Reqnroll, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reqnroll.2.2.1\lib\netstandard2.0\Reqnroll.dll</HintPath>
     </Reference>
-    <Reference Include="Reqnroll.Contrib.Variants.ReqnrollPlugin, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ViaData.Reqnroll.Variants.1.1.1-alpha\lib\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll</HintPath>
+    <Reference Include="Reqnroll.Contrib.Variants.ReqnrollPlugin, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ViaData.Reqnroll.Variants.1.1.2-alpha\lib\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Reqnroll.Generator, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reqnroll.CustomPlugin.2.2.1\lib\netstandard2.0\Reqnroll.Generator.dll</HintPath>
