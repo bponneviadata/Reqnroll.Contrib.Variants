@@ -28,12 +28,12 @@ namespace Reqnroll.Contrib.Variants.UnitTests
             }
         }
 
-        protected CodeNamespace SetupFeatureGenerator<T>(ReqnrollDocument document, string testClassName = "TestClassName", string tagetNamespace = "Target.Namespace") where T : IUnitTestGeneratorProvider
+        protected CodeNamespace SetupFeatureGenerator<T>(ReqnrollDocument document, string testClassName = "TestClassName", string targetNamespace = "Target.Namespace") where T : IUnitTestGeneratorProvider
         {
             var codeDomHelper = new CodeDomHelper(CodeDomProviderLanguage.CSharp);
             _unitTestGeneratorProvider = (T)Activator.CreateInstance(typeof(T), codeDomHelper, SampleFeatureFile.Variant);
             var featureGenerator = FeatureGenerator(codeDomHelper);
-            return featureGenerator.GenerateUnitTestFixture(document, testClassName, tagetNamespace);
+            return featureGenerator.GenerateUnitTestFixture(document, testClassName, targetNamespace);
         }
 
         private IFeatureGenerator FeatureGenerator(CodeDomHelper codeDomHelper)
