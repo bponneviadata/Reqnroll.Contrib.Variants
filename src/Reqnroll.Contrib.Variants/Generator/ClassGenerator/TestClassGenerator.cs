@@ -83,7 +83,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
 
             var codeExpressionArray2 = codeExpressionArray1;
             CodeExpression runnerExpression = GetTestRunnerExpression();
-            initializeMethod.Statements.Add(new CodeAssignStatement(runnerExpression, new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(TestRunnerManager)), "GetTestRunner", codeExpressionArray2)));
+            initializeMethod.Statements.Add(new CodeAssignStatement(runnerExpression, new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(TestRunnerManager)), "GetTestRunnerForAssembly", codeExpressionArray2)));
             initializeMethod.Statements.Add(new CodeVariableDeclarationStatement(typeof(FeatureInfo), "featureInfo", new CodeObjectCreateExpression(typeof(FeatureInfo), new CodeExpression[6]
             {
                 new CodeObjectCreateExpression(typeof(CultureInfo), new CodeExpression[1]
@@ -96,7 +96,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
                 new CodeFieldReferenceExpression(new CodeTypeReferenceExpression("ProgrammingLanguage"), _codeDomHelper.TargetLanguage.ToString()),
                 GenerationContext.Feature.Tags.GetStringArrayExpression()
             })));
-            initializeMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnFeatureStart", new CodeExpression[1]
+            initializeMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnFeatureStartAsync", new CodeExpression[1]
             {
                 new CodeVariableReferenceExpression("featureInfo")
             }));
@@ -117,7 +117,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
             testCleanupMethod.Name = "ScenarioTearDown";
             _testGeneratorProvider.SetTestCleanupMethod(GenerationContext);
             var runnerExpression = GetTestRunnerExpression();
-            testCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnScenarioEnd", new CodeExpression[0]));
+            testCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnScenarioEndAsync", new CodeExpression[0]));
         }
 
         public void SetupTestClassCleanupMethod()
@@ -127,7 +127,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
             classCleanupMethod.Name = "FeatureTearDown";
             _testGeneratorProvider.SetTestClassCleanupMethod(GenerationContext);
             var runnerExpression = GetTestRunnerExpression();
-            classCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnFeatureEnd", new CodeExpression[0]));
+            classCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnFeatureEndAsync", new CodeExpression[0]));
             classCleanupMethod.Statements.Add(new CodeAssignStatement(runnerExpression, new CodePrimitiveExpression(null)));
         }
 

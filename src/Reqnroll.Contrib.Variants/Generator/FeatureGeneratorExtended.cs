@@ -96,7 +96,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             scenarioCleanupMethod.Attributes = MemberAttributes.Public;
             scenarioCleanupMethod.Name = "ScenarioCleanup";
             var runnerExpression = GetTestRunnerExpression();
-            scenarioCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "CollectScenarioErrors", new CodeExpression[0]));
+            scenarioCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "CollectScenarioErrorsAsync", new CodeExpression[0]));
         }
 
         private void SetupScenarioStartMethod(TestClassGenerationContext generationContext)
@@ -105,7 +105,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             scenarioStartMethod.Attributes = MemberAttributes.Public;
             scenarioStartMethod.Name = "ScenarioStart";
             var runnerExpression = GetTestRunnerExpression();
-            scenarioStartMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnScenarioStart", new CodeExpression[0]));
+            scenarioStartMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnScenarioStartAsync", new CodeExpression[0]));
         }
 
         private void SetupFeatureBackground(TestClassGenerationContext generationContext)
@@ -455,7 +455,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             codeExpressionList.Add(new CodePrimitiveExpression(reqnrollStep.Keyword));
             _codeDomHelper.AddLineDirective(reqnrollStep, testMethod.Statements, _reqnrollConfiguration);
             var runnerExpression = GetTestRunnerExpression();
-            testMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, reqnrollStep.StepKeyword.ToString(), codeExpressionList.ToArray()));
+            testMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, reqnrollStep.StepKeyword.ToString() + "Async", codeExpressionList.ToArray()));
         }
 
         private string GetTestMethodName(StepsContainer scenario, string variantName, string exampleSetIdentifier)

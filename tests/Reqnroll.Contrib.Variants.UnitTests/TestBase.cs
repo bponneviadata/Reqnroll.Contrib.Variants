@@ -21,7 +21,7 @@ namespace Reqnroll.Contrib.Variants.UnitTests
 
         protected ReqnrollDocument CreateReqnrollDocument(string document)
         {
-            var parser = new ReqnrollGherkinParser(new CultureInfo("en-GB"));
+            var parser = new ReqnrollGherkinParser(new CultureInfo("en"));
             using (var reader = new StringReader(document))
             {
                 return parser.Parse(reader, new ReqnrollDocumentLocation("Test"));
