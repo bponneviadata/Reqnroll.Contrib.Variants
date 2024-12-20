@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Reqnroll;
 using Reqnroll.Configuration;
 using Reqnroll.Generator;
 using Reqnroll.Generator.CodeDom;
@@ -15,7 +14,6 @@ using Reqnroll.Generator.UnitTestConverter;
 using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Parser;
 using Reqnroll.Tracing;
-using DataTable = Gherkin.Ast.DataTable;
 
 [assembly: InternalsVisibleTo("Reqnroll.Contrib.Variants.UnitTests")]
 namespace Reqnroll.Contrib.Variants.Generator
@@ -24,7 +22,6 @@ namespace Reqnroll.Contrib.Variants.Generator
     {
         private readonly IUnitTestGeneratorProvider _testGeneratorProvider;
         private readonly CodeDomHelper _codeDomHelper;
-        private readonly LinePragmaHandler _linePragmaHandler;
         private readonly ReqnrollConfiguration _reqnrollConfiguration;
         private readonly IDecoratorRegistry _decoratorRegistry;
         private int _tableCounter;
@@ -43,7 +40,6 @@ namespace Reqnroll.Contrib.Variants.Generator
             _codeDomHelper = codeDomHelper;
             _reqnrollConfiguration = reqnrollConfiguration;
             _decoratorRegistry = decoratorRegistry;
-            _linePragmaHandler = new LinePragmaHandler(_reqnrollConfiguration, _codeDomHelper);
             _variantHelper = new VariantHelper(variantKey);
         }
 
@@ -90,7 +86,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             }
             _testGeneratorProvider.FinalizeTestClass(GenerationContext);
 
-            CodeNamespace.Comments.Add(new CodeCommentStatement(new CodeComment(CustomGeneratedComment))); //NEW CODE
+            CodeNamespace.Comments.Add(new CodeCommentStatement(new CodeComment(CustomGeneratedComment)));
             return CodeNamespace;
         }
 
@@ -433,7 +429,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             var str = scenarioDefinition.Name;
             if (variantName != null)
             {
-                if (variantName.IndexOf("_") == 0) { variantName = variantName.Remove(0, 1); } //NEW CODE
+                if (variantName.IndexOf("_") == 0) { variantName = variantName.Remove(0, 1); }
                 str = $"{scenarioDefinition.Name}: {variantName}";
             }
             if (rowTest)

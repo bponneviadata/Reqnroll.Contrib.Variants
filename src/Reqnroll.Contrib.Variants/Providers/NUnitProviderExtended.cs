@@ -11,8 +11,6 @@ namespace Reqnroll.Contrib.Variants.Providers
     {
         private readonly CodeDomHelper _codeDomHelper;
         private readonly string _variantKey;
-        private CodeTypeDeclaration _currentFixtureDataTypeDeclaration;
-        private readonly CodeTypeReference _objectCodeTypeReference = new CodeTypeReference(typeof(object));
         private IEnumerable<string> _filteredCategories;
 
         public NUnitProviderExtended(CodeDomHelper codeDomHelper, string variantKey)
@@ -23,14 +21,13 @@ namespace Reqnroll.Contrib.Variants.Providers
 
         public UnitTestGeneratorTraits GetTraits()
         {
-            return UnitTestGeneratorTraits.ParallelExecution;
+            return UnitTestGeneratorTraits.RowTests | UnitTestGeneratorTraits.ParallelExecution;
         }
 
         public void SetTestClass(TestClassGenerationContext generationContext, string featureTitle, string featureDescription)
         {
-            var newFeatureDescription = string.IsNullOrEmpty(featureDescription) ? featureTitle : featureDescription;
             _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.TestFixtureAttribute");
-            _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.DescriptionAttribute", featureTitle);
+            _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.DescriptionAttribute", new object[1] { featureTitle });
         }
 
         public void SetTestClassInitializeMethod(TestClassGenerationContext generationContext)
@@ -82,7 +79,7 @@ namespace Reqnroll.Contrib.Variants.Providers
         public void SetTestMethod(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, string friendlyTestName)
         {
             _codeDomHelper.AddAttribute(testMethod, "NUnit.Framework.TestAttribute");
-            _codeDomHelper.AddAttribute(testMethod, "NUnit.Framework.DescriptionAttribute", friendlyTestName);
+            _codeDomHelper.AddAttribute(testMethod, "NUnit.Framework.DescriptionAttribute", new object[1] { friendlyTestName });
         }
 
         public void SetTestMethodCategories(TestClassGenerationContext generationContext, CodeMemberMethod testMethod, IEnumerable<string> scenarioCategories)
@@ -103,19 +100,16 @@ namespace Reqnroll.Contrib.Variants.Providers
             var source = tags.Select(t => new CodePrimitiveExpression(t));
             var codeExpression = num != 0 ? new CodeArrayCreateExpression(typeof(string[]), source.ToArray()) : (CodeExpression)new CodePrimitiveExpression(null);
             list.Add(new CodeAttributeArgument(codeExpression));
+            
             if (num != 0)
             {
-                var nt = tags.ToList();
-                nt.Add(variant);
-                CodeExpression codeExpression2 = new CodePrimitiveExpression(string.Join(",", nt.ToArray()));
+                CodeExpression codeExpression2 = new CodePrimitiveExpression(string.Join(",", tags.ToArray().Append(variant)));
                 list.Add(new CodeAttributeArgument("Category", codeExpression2));
             }
             else if (variant != null)
             {
-                var nft = _filteredCategories.ToList();
-                nft.Insert(0, variant);
                 // Add the current variant as the nunit Category attribute
-                list.Add(new CodeAttributeArgument("Category", new CodePrimitiveExpression(string.Join(",", nft.ToArray()))));
+                list.Add(new CodeAttributeArgument("Category", new CodePrimitiveExpression(string.Join(",", _filteredCategories.ToArray().Prepend(variant)))));
             }
 
             // Filter arguments to build the nunit TestName attribute
@@ -152,6 +146,8 @@ namespace Reqnroll.Contrib.Variants.Providers
         { }
 
         public void MarkCodeMethodInvokeExpressionAsAwait(CodeMethodInvokeExpression expression)
-        { }
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -214,7 +214,7 @@ namespace Reqnroll.Contrib.Variants.UnitTests
         {
             var document = CreateReqnrollDocument(SampleFeatureFile.FeatureFileWithFeatureVariantTags);
             var generatedCode = SetupFeatureGenerator<NUnitProviderExtended>(document);
-            var assemblies = new[] { "BoDi.dll", "System.Core.dll", "Reqnroll.dll", "System.dll", "System.Runtime.dll", "nunit.framework.dll" };
+            var assemblies = new[] { "BoDi.dll", "System.Core.dll", "Reqnroll.dll", "System.dll", "System.Runtime.dll", "nunit.framework.dll", "netstandard.dll" };
 
             var compilerResults = GetCompilerResults(generatedCode, assemblies);
 

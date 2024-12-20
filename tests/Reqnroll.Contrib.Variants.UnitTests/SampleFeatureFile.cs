@@ -4,7 +4,7 @@
     {
         public const string Variant = "Variant";
         public const string FeatureTitle = "This is a feature";
-        public const string ScenarioTitle_Plain = "A scenario with no tags or exampes";
+        public const string ScenarioTitle_Plain = "A scenario with no tags or examples";
         public const string ScenarioTitle_Tags = "A scenario with variant and regular tags";
         public const string ScenarioTitle_TagsAndExamples = "A scenario with variant tags and examples";
         public const string ScenarioTitle_TagsExamplesAndInlineData = "A scenario with examples, inline table and text";

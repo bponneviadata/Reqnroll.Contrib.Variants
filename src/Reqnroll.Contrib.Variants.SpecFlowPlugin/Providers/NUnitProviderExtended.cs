@@ -95,6 +95,7 @@ namespace Reqnroll.Contrib.Variants.ReqnrollPlugin.Providers
             var source = tags.Select(t => new CodePrimitiveExpression(t));
             var codeExpression = num != 0 ? new CodeArrayCreateExpression(typeof(string[]), source.ToArray()) : (CodeExpression)new CodePrimitiveExpression(null);
             list.Add(new CodeAttributeArgument(codeExpression));
+            
             if (num != 0)
             {
                 CodeExpression codeExpression2 = new CodePrimitiveExpression(string.Join(",", tags.ToArray().Append(variant)));

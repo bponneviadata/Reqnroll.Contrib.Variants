@@ -13,7 +13,7 @@ namespace Reqnroll.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests
             var curDir = Directory.GetCurrentDirectory();
             var features = Directory.GetParent(curDir).Parent.Parent.GetFiles().Where(a => a.FullName.EndsWith(".feature.cs")).ToList();
 
-            var result = features.All(a => File.ReadLines(a.FullName).Any(line => line == "// Generation customised by ViaData.Reqnroll.Variants v1.1.1-alpha"));
+            var result = features.All(a => File.ReadLines(a.FullName).Any(line => line == "// Generation customised by ViaData.Reqnroll.Variants"));
 
             Assert.IsTrue(result);
         }

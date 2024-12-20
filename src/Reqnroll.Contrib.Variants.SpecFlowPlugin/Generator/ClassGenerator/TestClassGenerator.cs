@@ -23,12 +23,12 @@ namespace Reqnroll.Contrib.Variants.ReqnrollPlugin.Generator.ClassGenerator
         private readonly CodeDomHelper _codeDomHelper;
         private readonly ReqnrollConfiguration _reqnrollConfiguration;
 
-        public TestClassGenerator(IDecoratorRegistry decoratorRegistry, IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration specFlowConfiguration)
+        public TestClassGenerator(IDecoratorRegistry decoratorRegistry, IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration reqnrollConfiguration)
         {
             _decoratorRegistry = decoratorRegistry;
             _testGeneratorProvider = testGeneratorProvider;
             _codeDomHelper = codeDomHelper;
-            _reqnrollConfiguration = specFlowConfiguration;
+            _reqnrollConfiguration = reqnrollConfiguration;
         }
 
         public void CreateNamespace(string targetNamespace)
