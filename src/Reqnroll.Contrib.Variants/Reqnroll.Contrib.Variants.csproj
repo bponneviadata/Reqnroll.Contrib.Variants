@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <TargetFramework>net481</TargetFramework>
+	<TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <AssemblyName>Reqnroll.Contrib.Variants.ReqnrollPlugin</AssemblyName>
     <PackageId>ViaData.Reqnroll.Variants</PackageId>
-    <Version>1.1.4-alpha</Version>
+    <Version>1.2.0.1</Version>
     <Authors>ViaData FieldService BV;Brian Ponne</Authors>
     <Copyright>Copyright 2024 ViaData FieldService BV</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/bponneviadata/Reqnroll.Contrib.Variants</PackageProjectUrl>
     <PackageIcon>Logo.png</PackageIcon>
     <Description>Extends Reqnroll to allow variants of a test to be run using tags</Description>
-    <PackageReleaseNotes>Updated to support Reqnroll</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated to support Reqnroll 2.2.1</PackageReleaseNotes>
     <PackageTags>reqnroll;bdd;gherkin;cucumber</PackageTags>
     <RepositoryUrl>https://github.com/bponneviadata/Reqnroll.Contrib.Variants</RepositoryUrl>
     <IncludeBuildOutput>true</IncludeBuildOutput>
@@ -39,8 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\$(Configuration)\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll" Pack="true" PackagePath="build\net481" />
-    <None Include="bin\$(Configuration)\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.pdb" Pack="true" PackagePath="build\net481" />
+    <None Include="bin\$(Configuration)\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.dll" Pack="true" PackagePath="build\netstandard2.0" />
+    <None Include="bin\$(Configuration)\net481\Reqnroll.Contrib.Variants.ReqnrollPlugin.pdb" Pack="true" PackagePath="build\netstandard2.0" />
   </ItemGroup>
   </Target>
 

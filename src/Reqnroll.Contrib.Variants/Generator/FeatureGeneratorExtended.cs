@@ -94,7 +94,7 @@ namespace Reqnroll.Contrib.Variants.Generator
         {
             var scenarioCleanupMethod = generationContext.ScenarioCleanupMethod;
             scenarioCleanupMethod.Attributes = MemberAttributes.Public;
-            scenarioCleanupMethod.Name = "ScenarioCleanup";
+            scenarioCleanupMethod.Name = "ScenarioCleanupAsync";
             var runnerExpression = GetTestRunnerExpression();
             scenarioCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "CollectScenarioErrorsAsync", new CodeExpression[0]));
         }
@@ -103,7 +103,7 @@ namespace Reqnroll.Contrib.Variants.Generator
         {
             var scenarioStartMethod = generationContext.ScenarioStartMethod;
             scenarioStartMethod.Attributes = MemberAttributes.Public;
-            scenarioStartMethod.Name = "ScenarioStart";
+            scenarioStartMethod.Name = "ScenarioStartAsync";
             var runnerExpression = GetTestRunnerExpression();
             scenarioStartMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnScenarioStartAsync", new CodeExpression[0]));
         }
@@ -114,7 +114,7 @@ namespace Reqnroll.Contrib.Variants.Generator
                 return;
             var backgroundMethod = generationContext.FeatureBackgroundMethod;
             backgroundMethod.Attributes = MemberAttributes.Public;
-            backgroundMethod.Name = "FeatureBackground";
+            backgroundMethod.Name = "FeatureBackgroundAsync";
             var background = generationContext.Feature.Background;
             _codeDomHelper.AddLineDirective(background, backgroundMethod.Statements, _reqnrollConfiguration);
             foreach (var step in background.Steps)

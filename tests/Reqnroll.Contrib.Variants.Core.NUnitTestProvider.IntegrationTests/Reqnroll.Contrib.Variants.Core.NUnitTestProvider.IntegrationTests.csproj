@@ -16,10 +16,10 @@
     <PackageReference Include="Reqnroll" Version="2.2.1" />
     <PackageReference Include="Reqnroll.Tools.MsBuild.Generation" Version="2.2.1" />
     <PackageReference Include="System.Security.Permissions" Version="7.0.0" />
-    <PackageReference Include="ViaData.Reqnroll.Variants" Version="1.1.3-alpha" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Reqnroll.Contrib.Variants\Reqnroll.Contrib.Variants.csproj" />
     <ProjectReference Include="..\Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings\Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings.csproj" />
   </ItemGroup>
 
