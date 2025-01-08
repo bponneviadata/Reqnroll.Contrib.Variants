@@ -6,7 +6,7 @@
     <IsPackable>true</IsPackable>
     <AssemblyName>Reqnroll.Contrib.Variants.ReqnrollPlugin</AssemblyName>
     <PackageId>ViaData.Reqnroll.Variants</PackageId>
-    <Version>1.2.0.6</Version>
+    <Version>1.2.0.7</Version>
     <Authors>ViaData FieldService BV;Brian Ponne</Authors>
     <Copyright>Copyright 2024 ViaData FieldService BV</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
