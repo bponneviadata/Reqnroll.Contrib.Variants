@@ -4,7 +4,6 @@
   <Import Project="..\..\packages\Microsoft.CodeCoverage.17.12.0\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('..\..\packages\Microsoft.CodeCoverage.17.12.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
   <Import Project="..\..\packages\NUnit3TestAdapter.4.6.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\..\packages\NUnit3TestAdapter.4.6.0\build\net462\NUnit3TestAdapter.props')" />
   <Import Project="..\..\packages\NUnit.4.3.0\build\NUnit.props" Condition="Exists('..\..\packages\NUnit.4.3.0\build\NUnit.props')" />
-  <Import Project="..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.props" Condition="Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -76,9 +75,6 @@
     </Reference>
     <Reference Include="nunit.framework.legacy, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.4.3.0\lib\net462\nunit.framework.legacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Reqnroll, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Reqnroll.2.2.1\lib\netstandard2.0\Reqnroll.dll</HintPath>
     </Reference>
     <Reference Include="Reqnroll.Generator, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reqnroll.CustomPlugin.2.2.1\lib\netstandard2.0\Reqnroll.Generator.dll</HintPath>
@@ -193,9 +189,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.props'))" />
-    <Error Condition="!Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.targets'))" />
     <Error Condition="!Exists('..\..\packages\NUnit.4.3.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.4.3.0\build\NUnit.props'))" />
     <Error Condition="!Exists('..\..\packages\NUnit3TestAdapter.4.6.0\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit3TestAdapter.4.6.0\build\net462\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeCoverage.17.12.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeCoverage.17.12.0\build\netstandard2.0\Microsoft.CodeCoverage.props'))" />
@@ -203,8 +196,6 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.NET.Test.Sdk.17.12.0\build\net462\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NET.Test.Sdk.17.12.0\build\net462\Microsoft.NET.Test.Sdk.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.NET.Test.Sdk.17.12.0\build\net462\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NET.Test.Sdk.17.12.0\build\net462\Microsoft.NET.Test.Sdk.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets" Condition="Exists('..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets')" />
-  <Import Project="..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.targets" Condition="Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.targets')" />
   <Import Project="..\..\packages\Microsoft.CodeCoverage.17.12.0\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\..\packages\Microsoft.CodeCoverage.17.12.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
   <Import Project="..\..\packages\Microsoft.NET.Test.Sdk.17.12.0\build\net462\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\..\packages\Microsoft.NET.Test.Sdk.17.12.0\build\net462\Microsoft.NET.Test.Sdk.targets')" />
 </Project>
