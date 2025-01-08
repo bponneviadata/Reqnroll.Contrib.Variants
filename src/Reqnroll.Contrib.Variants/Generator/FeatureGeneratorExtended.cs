@@ -94,8 +94,9 @@ namespace Reqnroll.Contrib.Variants.Generator
         {
             var scenarioCleanupMethod = generationContext.ScenarioCleanupMethod;
             scenarioCleanupMethod.Attributes = MemberAttributes.Public;
-            scenarioCleanupMethod.Name = "ScenarioCleanup";
-            var runnerExpression = GetTestRunnerExpression();
+            scenarioCleanupMethod.ReturnType = new CodeTypeReference("async void");
+            scenarioCleanupMethod.Name = "ScenarioCleanupAsync";
+            var runnerExpression = GetTestRunnerExpressionAwait();
             scenarioCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "CollectScenarioErrorsAsync", new CodeExpression[0]));
         }
 
@@ -103,8 +104,9 @@ namespace Reqnroll.Contrib.Variants.Generator
         {
             var scenarioStartMethod = generationContext.ScenarioStartMethod;
             scenarioStartMethod.Attributes = MemberAttributes.Public;
-            scenarioStartMethod.Name = "ScenarioStart";
-            var runnerExpression = GetTestRunnerExpression();
+            scenarioStartMethod.ReturnType = new CodeTypeReference("async void");
+            scenarioStartMethod.Name = "ScenarioStartAsync";
+            var runnerExpression = GetTestRunnerExpressionAwait();
             scenarioStartMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnScenarioStartAsync", new CodeExpression[0]));
         }
 
@@ -114,7 +116,8 @@ namespace Reqnroll.Contrib.Variants.Generator
                 return;
             var backgroundMethod = generationContext.FeatureBackgroundMethod;
             backgroundMethod.Attributes = MemberAttributes.Public;
-            backgroundMethod.Name = "FeatureBackground";
+            backgroundMethod.ReturnType = new CodeTypeReference("async void");
+            backgroundMethod.Name = "FeatureBackgroundAsync";
             var background = generationContext.Feature.Background;
             _codeDomHelper.AddLineDirective(background, backgroundMethod.Statements, _reqnrollConfiguration);
             foreach (var step in background.Steps)
@@ -454,7 +457,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             codeExpressionList.Add(GetTableArgExpression(reqnrollStep.Argument as Gherkin.Ast.DataTable, testMethod.Statements, paramToIdentifier));
             codeExpressionList.Add(new CodePrimitiveExpression(reqnrollStep.Keyword));
             _codeDomHelper.AddLineDirective(reqnrollStep, testMethod.Statements, _reqnrollConfiguration);
-            var runnerExpression = GetTestRunnerExpression();
+            var runnerExpression = GetTestRunnerExpressionAwait();
             testMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, reqnrollStep.StepKeyword.ToString() + "Async", codeExpressionList.ToArray()));
         }
 
