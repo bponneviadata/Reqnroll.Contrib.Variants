@@ -7,20 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="nunit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.3.1">
+    <PackageReference Include="nunit" Version="4.3.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageReference Include="Reqnroll" Version="2.2.1" />
-    <PackageReference Include="Reqnroll.Tools.MsBuild.Generation" Version="2.2.1" />
-    <PackageReference Include="System.Security.Permissions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="Reqnroll.NUnit" Version="2.2.1" />
+    <PackageReference Include="System.Security.Permissions" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Reqnroll.Contrib.Variants\Reqnroll.Contrib.Variants.csproj" />
     <ProjectReference Include="..\Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings\Reqnroll.Contrib.Variants.IntegrationTests.SharedBindings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.4.3.0\lib\net462\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,4 @@
-﻿using Reqnroll;
-
-namespace Reqnroll.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests
+﻿namespace Reqnroll.Contrib.Variants.Core.NUnitTestProvider.IntegrationTests
 {
     [Binding]
     public class Context

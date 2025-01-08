@@ -31,7 +31,7 @@ namespace Reqnroll.Contrib.Variants.Generator
         private bool _setVariantToContextForOutlineTest;
         private bool _setVariantToContextForTest;
         private string _variantValue;
-        public const string CustomGeneratedComment = "Generation customised by ViaData.Reqnroll.Variants";
+        public const string CustomGeneratedComment = "Generation affected by ViaData.Reqnroll.Variants";
 
         public FeatureGeneratorExtended(IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, ReqnrollConfiguration reqnrollConfiguration, IDecoratorRegistry decoratorRegistry, string variantKey)
             : base(decoratorRegistry, testGeneratorProvider, codeDomHelper, reqnrollConfiguration)
@@ -94,7 +94,7 @@ namespace Reqnroll.Contrib.Variants.Generator
         {
             var scenarioCleanupMethod = generationContext.ScenarioCleanupMethod;
             scenarioCleanupMethod.Attributes = MemberAttributes.Public;
-            scenarioCleanupMethod.Name = "ScenarioCleanupAsync";
+            scenarioCleanupMethod.Name = "ScenarioCleanup";
             var runnerExpression = GetTestRunnerExpression();
             scenarioCleanupMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "CollectScenarioErrorsAsync", new CodeExpression[0]));
         }
@@ -103,7 +103,7 @@ namespace Reqnroll.Contrib.Variants.Generator
         {
             var scenarioStartMethod = generationContext.ScenarioStartMethod;
             scenarioStartMethod.Attributes = MemberAttributes.Public;
-            scenarioStartMethod.Name = "ScenarioStartAsync";
+            scenarioStartMethod.Name = "ScenarioStart";
             var runnerExpression = GetTestRunnerExpression();
             scenarioStartMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnScenarioStartAsync", new CodeExpression[0]));
         }
@@ -114,7 +114,7 @@ namespace Reqnroll.Contrib.Variants.Generator
                 return;
             var backgroundMethod = generationContext.FeatureBackgroundMethod;
             backgroundMethod.Attributes = MemberAttributes.Public;
-            backgroundMethod.Name = "FeatureBackgroundAsync";
+            backgroundMethod.Name = "FeatureBackground";
             var background = generationContext.Feature.Background;
             _codeDomHelper.AddLineDirective(background, backgroundMethod.Statements, _reqnrollConfiguration);
             foreach (var step in background.Steps)
