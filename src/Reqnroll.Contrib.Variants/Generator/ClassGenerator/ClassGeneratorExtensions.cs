@@ -20,7 +20,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
         public static void AddLineDirectiveHidden(this CodeDomHelper codeDomHelper, CodeStatementCollection statements, ReqnrollConfiguration reqnrollConfiguration)
         {
             if (reqnrollConfiguration.AllowDebugGeneratedFiles) return;
-            //codeDomHelper.AddDisableSourceLinePragmaStatement(statements);
+            AddDisableSourceLinePragmaStatement(statements, codeDomHelper);
         }
 
         public static void AddLineDirective(this CodeDomHelper codeDomHelper, Background background, CodeStatementCollection statements, ReqnrollConfiguration reqnrollConfiguration)
@@ -41,7 +41,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
         private static void AddLineDirective(CodeStatementCollection statements, Location location, ReqnrollConfiguration reqnrollConfiguration, CodeDomHelper codeDomHelper)
         {
             if (location == null || reqnrollConfiguration.AllowDebugGeneratedFiles) return;
-            //codeDomHelper.AddSourceLinePragmaStatement(statements, location.Line, location.Column);
+            AddSourceLinePragmaStatement(statements, location.Line, location.Column, codeDomHelper);
         }
 
         public static CodeExpression GetSubstitutedString(this ParameterSubstitution paramToIdentifier, string text)
@@ -90,6 +90,32 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
             var codeMemberMethod = new CodeMemberMethod();
             type.Members.Add(codeMemberMethod);
             return codeMemberMethod;
+        }
+
+        public static void AddDisableSourceLinePragmaStatement(CodeStatementCollection statements, CodeDomHelper codeDomHelper)
+        {
+            switch (codeDomHelper.TargetLanguage)
+            {
+                case CodeDomProviderLanguage.CSharp:
+                    statements.Add((CodeStatement)new CodeSnippetStatement("#line hidden"));
+                    break;
+                case CodeDomProviderLanguage.VB:
+                    break;
+            }
+        }
+        public static void AddSourceLinePragmaStatement(CodeStatementCollection statements,
+            int lineNo,
+            int colNo, CodeDomHelper codeDomHelper)
+        {
+            switch (codeDomHelper.TargetLanguage)
+            {
+                case CodeDomProviderLanguage.CSharp:
+                    statements.Add((CodeStatement)new CodeSnippetStatement(string.Format("#line {0}", (object)lineNo)));
+                    break;
+                case CodeDomProviderLanguage.VB:
+
+                    break;
+            }
         }
     }
 }
