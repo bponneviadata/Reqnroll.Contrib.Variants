@@ -7,6 +7,7 @@ using System.Reflection;
 using Reqnroll.Configuration;
 using Reqnroll.Generator;
 using Reqnroll.Generator.CodeDom;
+using Reqnroll.Generator.Generation;
 using Reqnroll.Generator.UnitTestConverter;
 using Reqnroll.Generator.UnitTestProvider;
 using Reqnroll.Parser;
@@ -57,7 +58,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
                 document,
                 CodeNamespace,
                 generatedTypeDeclaration,
-                generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"),
+                DeclareTestRunnerMember(generatedTypeDeclaration),
                 generatedTypeDeclaration.CreateMethod(),
                 generatedTypeDeclaration.CreateMethod(),
                 generatedTypeDeclaration.CreateMethod(),
@@ -67,6 +68,15 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
                 generatedTypeDeclaration.CreateMethod(),
                 document.ReqnrollFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null,
                 _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _reqnrollConfiguration.AllowRowTests);
+        }
+
+        private CodeMemberField DeclareTestRunnerMember(CodeTypeDeclaration type)
+        {
+            var testRunnerField = new CodeMemberField(_codeDomHelper.GetGlobalizedTypeName(typeof(ITestRunner)),
+                GeneratorConstants.TESTRUNNER_FIELD);
+            testRunnerField.Attributes = MemberAttributes.Static;
+            type.Members.Add(testRunnerField);
+            return testRunnerField;
         }
 
         public void SetupTestClass()
@@ -84,7 +94,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
         public void SetupTestClassInitializeMethod()
         {
             var initializeMethod = GenerationContext.TestClassInitializeMethod;
-            initializeMethod.Attributes = MemberAttributes.Public;
+            initializeMethod.Attributes = MemberAttributes.Public | MemberAttributes.Static;
             initializeMethod.Name = "FeatureSetupAsync";
             _codeDomHelper.MarkCodeMemberMethodAsAsync(initializeMethod);
 
@@ -160,7 +170,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
         public void SetupTestClassCleanupMethod()
         {
             var classCleanupMethod = GenerationContext.TestClassCleanupMethod;
-            classCleanupMethod.Attributes = MemberAttributes.Public;
+            classCleanupMethod.Attributes = MemberAttributes.Public | MemberAttributes.Static;
             classCleanupMethod.Name = "FeatureTearDownAsync";
 
             _codeDomHelper.MarkCodeMemberMethodAsAsync(classCleanupMethod);

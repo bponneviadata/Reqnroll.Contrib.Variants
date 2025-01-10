@@ -27,7 +27,7 @@ namespace Reqnroll.Contrib.Variants.Providers
         public void SetTestClass(TestClassGenerationContext generationContext, string featureTitle, string featureDescription)
         {
             _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.TestFixtureAttribute");
-            _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.DescriptionAttribute", new object[1] { featureTitle });
+            _codeDomHelper.AddAttribute(generationContext.TestClass, "NUnit.Framework.DescriptionAttribute", featureTitle);
         }
 
         public void SetTestClassInitializeMethod(TestClassGenerationContext generationContext)
@@ -62,7 +62,18 @@ namespace Reqnroll.Contrib.Variants.Providers
 
         public void FinalizeTestClass(TestClassGenerationContext generationContext)
         {
-            generationContext.ScenarioInitializeMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodePropertyReferenceExpression(new CodePropertyReferenceExpression(new CodeFieldReferenceExpression(null, generationContext.TestRunnerField.Name), "ScenarioContext"), "ScenarioContainer"), "RegisterInstanceAs", new CodeTypeReference[1]
+            generationContext.ScenarioInitializeMethod.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(
+                        new CodePropertyReferenceExpression(
+                            new CodePropertyReferenceExpression(
+                                new CodeFieldReferenceExpression(
+                                    null, 
+                                    generationContext.TestRunnerField.Name),
+                                "ScenarioContext"),
+                            "ScenarioContainer"),
+                        "RegisterInstanceAs",
+                        new CodeTypeReference[1]
             {
                 new CodeTypeReference("NUnit.Framework.TestContext")
             }), new CodeExpression[1]
