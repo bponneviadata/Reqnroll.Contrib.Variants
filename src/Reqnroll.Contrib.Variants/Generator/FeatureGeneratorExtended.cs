@@ -74,18 +74,29 @@ namespace Reqnroll.Contrib.Variants.Generator
 
                 if (scenarioDefinition is ScenarioOutline scenarioOutline)
                 {
-                    variantTags = _variantHelper.FeatureHasVariantTags ? variantTags : _variantHelper.GetScenarioVariantTagValues(scenarioDefinition);
+                    variantTags = _variantHelper.FeatureHasVariantTags
+                        ? variantTags
+                        : _variantHelper.GetScenarioVariantTagValues(scenarioDefinition);
                     GenerateScenarioOutlineTest(GenerationContext, scenarioOutline, variantTags);
                 }
                 else
                 {
-                    variantTags = _variantHelper.FeatureHasVariantTags ? variantTags : _variantHelper.GetScenarioVariantTagValues(scenarioDefinition);
-                    if (variantTags.Count > 0) { variantTags.ForEach(a => GenerateTest(GenerationContext, (Scenario)scenarioDefinition, a)); }
-                    else { GenerateTest(GenerationContext, (Scenario)scenarioDefinition, null); }
+                    variantTags = _variantHelper.FeatureHasVariantTags
+                        ? variantTags
+                        : _variantHelper.GetScenarioVariantTagValues(scenarioDefinition);
+
+                    if (variantTags.Count > 0) 
+                    {
+                        variantTags.ForEach(a => GenerateTest(GenerationContext, (Scenario)scenarioDefinition, a));
+                    }
+                    else
+                    {
+                        GenerateTest(GenerationContext, (Scenario)scenarioDefinition, null);
+                    }
                 }
             }
-            _testGeneratorProvider.FinalizeTestClass(GenerationContext);
 
+            _testGeneratorProvider.FinalizeTestClass(GenerationContext);
             CodeNamespace.Comments.Add(new CodeCommentStatement(new CodeComment(CustomGeneratedComment)));
             return CodeNamespace;
         }
@@ -99,7 +110,7 @@ namespace Reqnroll.Contrib.Variants.Generator
 
             var runnerExpression = GetTestRunnerExpression();
 
-            var expression = new CodeMethodInvokeExpression(runnerExpression, "CollectScenarioErrorsAsync", new CodeExpression[0]);
+            var expression = new CodeMethodInvokeExpression(runnerExpression, "CollectScenarioErrorsAsync");
             _codeDomHelper.MarkCodeMethodInvokeExpressionAsAwait(expression);
 
             scenarioCleanupMethod.Statements.Add(expression);
@@ -113,8 +124,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             _codeDomHelper.MarkCodeMemberMethodAsAsync(scenarioStartMethod);
 
             var runnerExpression = GetTestRunnerExpression();
-
-            var expression = new CodeMethodInvokeExpression(runnerExpression, "OnScenarioStartAsync", new CodeExpression[0]);
+            var expression = new CodeMethodInvokeExpression(runnerExpression, "OnScenarioStartAsync");
             _codeDomHelper.MarkCodeMethodInvokeExpressionAsAwait(expression);
 
             scenarioStartMethod.Statements.Add(expression);
@@ -143,7 +153,9 @@ namespace Reqnroll.Contrib.Variants.Generator
             initializeMethod.Attributes = MemberAttributes.Public;
             initializeMethod.Name = "ScenarioInitialize";
             initializeMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(ScenarioInfo), "scenarioInfo"));
+
             var runnerExpression = GetTestRunnerExpression();
+
             initializeMethod.Statements.Add(new CodeMethodInvokeExpression(runnerExpression, "OnScenarioInitialize", new CodeExpression[1]
             {
                 new CodeVariableReferenceExpression("scenarioInfo")
@@ -249,6 +261,7 @@ namespace Reqnroll.Contrib.Variants.Generator
             foreach (var keyValuePair in paramToIdentifier)
                 method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), keyValuePair.Value));
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string[]), "exampleTags"));
+            _codeDomHelper.MarkCodeMemberMethodAsAsync(method);
             return method;
         }
 
@@ -277,6 +290,7 @@ namespace Reqnroll.Contrib.Variants.Generator
         private CodeMemberMethod CreateTestMethod(TestClassGenerationContext generationContext, StepsContainer scenario, IEnumerable<Tag> additionalTags, string variantName = null, string exampleSetIdentifier = null)
         {
             var method = generationContext.TestClass.CreateMethod();
+            _codeDomHelper.MarkCodeMemberMethodAsAsync(method);
             SetupTestMethod(generationContext, method, scenario, additionalTags, variantName, exampleSetIdentifier, false);
             return method;
         }
@@ -323,8 +337,9 @@ namespace Reqnroll.Contrib.Variants.Generator
         private void GenerateTestBody(TestClassGenerationContext generationContext, StepsContainer scenario, CodeMemberMethod testMethod, CodeExpression additionalTagsExpression = null, ParameterSubstitution paramToIdentifier = null)
         {
             CodeExpression left;
-            if (additionalTagsExpression == null)
+            if (additionalTagsExpression == null) {
                 left = scenario.GetTags().GetStringArrayExpression();
+            }
             else if (!scenario.HasTags())
             {
                 left = additionalTagsExpression;
@@ -474,7 +489,7 @@ namespace Reqnroll.Contrib.Variants.Generator
 
             var runnerExpression = GetTestRunnerExpression();
 
-            var expression = new CodeMethodInvokeExpression(runnerExpression, reqnrollStep.StepKeyword.ToString() + "Async", codeExpressionList.ToArray());
+            var expression = new CodeMethodInvokeExpression(runnerExpression, reqnrollStep.StepKeyword + "Async", codeExpressionList.ToArray());
             _codeDomHelper.MarkCodeMethodInvokeExpressionAsAwait(expression);
 
             testMethod.Statements.Add(expression);

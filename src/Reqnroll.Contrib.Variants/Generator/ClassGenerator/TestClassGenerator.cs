@@ -13,7 +13,7 @@ using Reqnroll.Parser;
 
 namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
 {
-    internal class TestClassGenerator : ITestClassGenerator
+    internal class TestClassGenerator
     {
         protected CodeNamespace CodeNamespace { get; private set; }
         protected TestClassGenerationContext GenerationContext { get; private set; }
@@ -34,8 +34,12 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
         public void CreateNamespace(string targetNamespace)
         {
             targetNamespace = targetNamespace ?? "ReqnrollTests";
-            if (!targetNamespace.StartsWith("global", StringComparison.CurrentCultureIgnoreCase) && _codeDomHelper.TargetLanguage == CodeDomProviderLanguage.VB)
+            if (!targetNamespace.StartsWith("global", StringComparison.CurrentCultureIgnoreCase) &&
+                _codeDomHelper.TargetLanguage == CodeDomProviderLanguage.VB)
+            {
                 targetNamespace = $"GlobalVBNetNamespace.{targetNamespace}";
+            }
+
             CodeNamespace = new CodeNamespace(targetNamespace)
             {
                 Imports = { 
@@ -48,7 +52,21 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
         {
             var generatedTypeDeclaration = _codeDomHelper.CreateGeneratedTypeDeclaration(testClassName);
             CodeNamespace.Types.Add(generatedTypeDeclaration);
-            GenerationContext = new TestClassGenerationContext(_testGeneratorProvider, document, CodeNamespace, generatedTypeDeclaration, generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), generatedTypeDeclaration.CreateMethod(), document.ReqnrollFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null, _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _reqnrollConfiguration.AllowRowTests);
+            GenerationContext = new TestClassGenerationContext(
+                _testGeneratorProvider,
+                document,
+                CodeNamespace,
+                generatedTypeDeclaration,
+                generatedTypeDeclaration.DeclareTestRunnerMember<ITestRunner>("testRunner"),
+                generatedTypeDeclaration.CreateMethod(),
+                generatedTypeDeclaration.CreateMethod(),
+                generatedTypeDeclaration.CreateMethod(),
+                generatedTypeDeclaration.CreateMethod(),
+                generatedTypeDeclaration.CreateMethod(),
+                generatedTypeDeclaration.CreateMethod(),
+                generatedTypeDeclaration.CreateMethod(),
+                document.ReqnrollFeature.HasFeatureBackground() ? generatedTypeDeclaration.CreateMethod() : null,
+                _testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && _reqnrollConfiguration.AllowRowTests);
         }
 
         public void SetupTestClass()
@@ -118,6 +136,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
             var initializeMethod = GenerationContext.TestInitializeMethod;
             initializeMethod.Attributes = MemberAttributes.Public;
             initializeMethod.Name = "TestInitialize";
+
             _testGeneratorProvider.SetTestInitializeMethod(GenerationContext);
         }
 
@@ -126,9 +145,10 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
             var testCleanupMethod = GenerationContext.TestCleanupMethod;
             testCleanupMethod.Attributes = MemberAttributes.Public;
             testCleanupMethod.Name = "ScenarioTearDownAsync";
-            _codeDomHelper.MarkCodeMemberMethodAsAsync(testCleanupMethod);
 
+            _codeDomHelper.MarkCodeMemberMethodAsAsync(testCleanupMethod);
             _testGeneratorProvider.SetTestCleanupMethod(GenerationContext);
+
             var runnerExpression = GetTestRunnerExpression();
 
             var expression = new CodeMethodInvokeExpression(runnerExpression, "OnScenarioEndAsync", new CodeExpression[0]);
@@ -142,9 +162,10 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
             var classCleanupMethod = GenerationContext.TestClassCleanupMethod;
             classCleanupMethod.Attributes = MemberAttributes.Public;
             classCleanupMethod.Name = "FeatureTearDownAsync";
-            _codeDomHelper.MarkCodeMemberMethodAsAsync(classCleanupMethod);
 
+            _codeDomHelper.MarkCodeMemberMethodAsAsync(classCleanupMethod);
             _testGeneratorProvider.SetTestClassCleanupMethod(GenerationContext);
+
             var runnerExpression = GetTestRunnerExpression();
 
             var expression = new CodeMethodInvokeExpression(runnerExpression, "OnFeatureEndAsync", new CodeExpression[0]);
