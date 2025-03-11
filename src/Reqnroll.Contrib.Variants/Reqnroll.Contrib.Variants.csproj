@@ -6,9 +6,9 @@
     <IsPackable>true</IsPackable>
     <AssemblyName>Reqnroll.Contrib.Variants.ReqnrollPlugin</AssemblyName>
     <PackageId>ViaData.Reqnroll.Variants</PackageId>
-    <Version>1.2.0.13</Version>
+    <Version>1.2.0.14</Version>
     <Authors>ViaData FieldService BV;Brian Ponne</Authors>
-    <Copyright>Copyright 2024 ViaData FieldService BV</Copyright>
+    <Copyright>Copyright 2025 ViaData FieldService BV</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/bponneviadata/Reqnroll.Contrib.Variants</PackageProjectUrl>
@@ -23,9 +23,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Reqnroll" Version="2.2.1" />
-	  <PackageReference Include="Reqnroll.CustomPlugin" Version="2.2.1" PrivateAssets="All" />
-	  <PackageReference Include="Reqnroll.Tools.MsBuild.Generation" Version="2.2.1" />
+	  <PackageReference Include="Reqnroll" Version="2.4.0" />
+	  <PackageReference Include="Reqnroll.CustomPlugin" Version="2.4.0" PrivateAssets="All" />
+	  <PackageReference Include="Reqnroll.Tools.MsBuild.Generation" Version="2.4.0" />
   </ItemGroup>
 
   <Target Name="CopyFile" AfterTargets="Build">

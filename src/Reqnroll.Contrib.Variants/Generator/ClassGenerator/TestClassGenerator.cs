@@ -72,7 +72,7 @@ namespace Reqnroll.Contrib.Variants.Generator.ClassGenerator
 
         private CodeMemberField DeclareTestRunnerMember(CodeTypeDeclaration type)
         {
-            var testRunnerField = new CodeMemberField(_codeDomHelper.GetGlobalizedTypeName(typeof(ITestRunner)),
+            var testRunnerField = new CodeMemberField(typeof(ITestRunner).FullName,
                 GeneratorConstants.TESTRUNNER_FIELD);
             testRunnerField.Attributes = MemberAttributes.Static;
             type.Members.Add(testRunnerField);

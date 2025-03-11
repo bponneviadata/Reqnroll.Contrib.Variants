@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\NUnit.4.3.0\build\NUnit.props" Condition="Exists('..\..\packages\NUnit.4.3.0\build\NUnit.props')" />
-  <Import Project="..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.props" Condition="Exists('..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.props')" />
-  <Import Project="..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.props" Condition="Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.props')" />
-  <Import Project="..\..\packages\xunit.core.2.4.2\build\xunit.core.props" Condition="Exists('..\..\packages\xunit.core.2.4.2\build\xunit.core.props')" />
-  <Import Project="..\..\packages\xunit.runner.visualstudio.2.4.5\build\net462\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.4.5\build\net462\xunit.runner.visualstudio.props')" />
+  <Import Project="..\..\packages\xunit.runner.visualstudio.3.0.2\build\net472\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.3.0.2\build\net472\xunit.runner.visualstudio.props')" />
+  <Import Project="..\..\packages\xunit.core.2.9.3\build\xunit.core.props" Condition="Exists('..\..\packages\xunit.core.2.9.3\build\xunit.core.props')" />
+  <Import Project="..\..\packages\Reqnroll.NUnit.2.4.0\build\Reqnroll.NUnit.props" Condition="Exists('..\..\packages\Reqnroll.NUnit.2.4.0\build\Reqnroll.NUnit.props')" />
+  <Import Project="..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.4.0\build\Reqnroll.Tools.MsBuild.Generation.props" Condition="Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.4.0\build\Reqnroll.Tools.MsBuild.Generation.props')" />
+  <Import Project="..\..\packages\NUnit.4.3.2\build\NUnit.props" Condition="Exists('..\..\packages\NUnit.4.3.2\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,26 +53,36 @@
     <Reference Include="CucumberExpressions, Version=18.0.1.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Cucumber.CucumberExpressions.18.0.1\lib\netstandard2.0\CucumberExpressions.dll</HintPath>
     </Reference>
-    <Reference Include="Gherkin, Version=30.0.4.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Gherkin.30.0.4\lib\netstandard2.0\Gherkin.dll</HintPath>
+    <Reference Include="Gherkin, Version=32.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Gherkin.32.0.0\lib\netstandard2.0\Gherkin.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Protobuf, Version=3.29.2.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Protobuf.3.29.2\lib\net45\Google.Protobuf.dll</HintPath>
+    <Reference Include="Google.Protobuf, Version=3.30.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Protobuf.3.30.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.2\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyModel, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Extensions.DependencyModel.9.0.0\lib\net462\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.DependencyModel.9.0.2\lib\net462\Microsoft.Extensions.DependencyModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TestPlatform.AdapterUtilities, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TestPlatform.AdapterUtilities.17.4.0\lib\net462\Microsoft.TestPlatform.AdapterUtilities.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TestPlatform.AdapterUtilities.17.13.0\lib\net462\Microsoft.TestPlatform.AdapterUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TestPlatform.CoreUtilities, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TestPlatform.ObjectModel.17.13.0\lib\net462\Microsoft.TestPlatform.CoreUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TestPlatform.PlatformAbstractions, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TestPlatform.ObjectModel.17.13.0\lib\net462\Microsoft.TestPlatform.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.ObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TestPlatform.ObjectModel.17.13.0\lib\net462\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+      <HintPath>..\..\packages\MSTest.TestFramework.3.8.2\lib\net462\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+      <HintPath>..\..\packages\MSTest.TestFramework.3.8.2\lib\net462\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
@@ -82,20 +92,20 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.4.3.0\lib\net462\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=4.3.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.4.3.2\lib\net462\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework.legacy, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.4.3.0\lib\net462\nunit.framework.legacy.dll</HintPath>
+    <Reference Include="nunit.framework.legacy, Version=4.3.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.4.3.2\lib\net462\nunit.framework.legacy.dll</HintPath>
     </Reference>
     <Reference Include="Reqnroll, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Reqnroll.2.2.1\lib\netstandard2.0\Reqnroll.dll</HintPath>
+      <HintPath>..\..\packages\Reqnroll.2.4.0\lib\netstandard2.0\Reqnroll.dll</HintPath>
     </Reference>
     <Reference Include="Reqnroll.Generator, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reqnroll.CustomPlugin.2.2.1\lib\netstandard2.0\Reqnroll.Generator.dll</HintPath>
     </Reference>
     <Reference Include="Reqnroll.NUnit.ReqnrollPlugin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Reqnroll.NUnit.2.2.1\lib\netstandard2.0\Reqnroll.NUnit.ReqnrollPlugin.dll</HintPath>
+      <HintPath>..\..\packages\Reqnroll.NUnit.2.4.0\lib\netstandard2.0\Reqnroll.NUnit.ReqnrollPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Reqnroll.Parser, Version=2.0.0.0, Culture=neutral, PublicKeyToken=611ce36403091019, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reqnroll.CustomPlugin.2.2.1\lib\netstandard2.0\Reqnroll.Parser.dll</HintPath>
@@ -115,8 +125,11 @@
     <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.CodeDom, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.CodeDom.9.0.0\lib\net462\System.CodeDom.dll</HintPath>
+    <Reference Include="System.CodeDom, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.CodeDom.9.0.2\lib\net462\System.CodeDom.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=9.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.9.0.2\lib\net462\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -162,8 +175,8 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.IO.Pipelines, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.IO.Pipelines.9.0.0\lib\net462\System.IO.Pipelines.dll</HintPath>
+    <Reference Include="System.IO.Pipelines, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Pipelines.9.0.2\lib\net462\System.IO.Pipelines.dll</HintPath>
     </Reference>
     <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
@@ -197,6 +210,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=9.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reflection.Metadata.9.0.2\lib\net462\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
       <Private>True</Private>
@@ -220,6 +236,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
       <Private>True</Private>
@@ -240,19 +257,19 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Text.Encodings.Web.9.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Encodings.Web.9.0.2\lib\net462\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Text.Json.9.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Text.Json, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Json.9.0.2\lib\net462\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Threading.Tasks.Dataflow, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Threading.Tasks.Dataflow.7.0.0\lib\net462\System.Threading.Tasks.Dataflow.dll</HintPath>
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=9.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Dataflow.9.0.2\lib\net462\System.Threading.Tasks.Dataflow.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.6.0\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -273,14 +290,14 @@
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.assert, Version=2.4.2.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\xunit.assert.2.4.2\lib\netstandard1.1\xunit.assert.dll</HintPath>
+    <Reference Include="xunit.assert, Version=2.9.3.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\xunit.assert.2.9.3\lib\netstandard1.1\xunit.assert.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.core, Version=2.4.2.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\xunit.extensibility.core.2.4.2\lib\net452\xunit.core.dll</HintPath>
+    <Reference Include="xunit.core, Version=2.9.3.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\xunit.extensibility.core.2.9.3\lib\net452\xunit.core.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.execution.desktop, Version=2.4.2.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\xunit.extensibility.execution.2.4.2\lib\net452\xunit.execution.desktop.dll</HintPath>
+    <Reference Include="xunit.execution.desktop, Version=2.9.3.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\xunit.extensibility.execution.2.9.3\lib\net452\xunit.execution.desktop.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -295,14 +312,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\xunit.analyzers.1.1.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
-    <Analyzer Include="..\..\packages\xunit.analyzers.1.1.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\src\Reqnroll.Contrib.Variants\Reqnroll.Contrib.Variants.csproj">
       <Project>{BC3F088F-84D2-4F8E-A433-66EFAFA71DE4}</Project>
       <Name>Reqnroll.Contrib.Variants</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\MSTest.Analyzers.3.8.2\analyzers\dotnet\cs\MSTest.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\MSTest.Analyzers.3.8.2\analyzers\dotnet\cs\MSTest.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\xunit.analyzers.1.20.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+    <Analyzer Include="..\..\packages\xunit.analyzers.1.20.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -311,19 +330,19 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
-    <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.4.5\build\net462\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.4.5\build\net462\xunit.runner.visualstudio.props'))" />
-    <Error Condition="!Exists('..\..\packages\xunit.core.2.4.2\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.4.2\build\xunit.core.props'))" />
-    <Error Condition="!Exists('..\..\packages\xunit.core.2.4.2\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.4.2\build\xunit.core.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.props'))" />
-    <Error Condition="!Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.props'))" />
-    <Error Condition="!Exists('..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.targets'))" />
-    <Error Condition="!Exists('..\..\packages\NUnit.4.3.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.4.3.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\..\packages\NUnit.4.3.2\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.4.3.2\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\..\packages\Reqnroll.2.4.0\build\Reqnroll.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.2.4.0\build\Reqnroll.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.4.0\build\Reqnroll.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.4.0\build\Reqnroll.Tools.MsBuild.Generation.props'))" />
+    <Error Condition="!Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.4.0\build\Reqnroll.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.4.0\build\Reqnroll.Tools.MsBuild.Generation.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Reqnroll.NUnit.2.4.0\build\Reqnroll.NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.NUnit.2.4.0\build\Reqnroll.NUnit.props'))" />
+    <Error Condition="!Exists('..\..\packages\Reqnroll.NUnit.2.4.0\build\Reqnroll.NUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Reqnroll.NUnit.2.4.0\build\Reqnroll.NUnit.targets'))" />
+    <Error Condition="!Exists('..\..\packages\xunit.core.2.9.3\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.9.3\build\xunit.core.props'))" />
+    <Error Condition="!Exists('..\..\packages\xunit.core.2.9.3\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.9.3\build\xunit.core.targets'))" />
+    <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.3.0.2\build\net472\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.3.0.2\build\net472\xunit.runner.visualstudio.props'))" />
   </Target>
   <Import Project="..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
-  <Import Project="..\..\packages\xunit.core.2.4.2\build\xunit.core.targets" Condition="Exists('..\..\packages\xunit.core.2.4.2\build\xunit.core.targets')" />
-  <Import Project="..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets" Condition="Exists('..\..\packages\Reqnroll.2.2.1\build\Reqnroll.targets')" />
-  <Import Project="..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.targets" Condition="Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.2.1\build\Reqnroll.Tools.MsBuild.Generation.targets')" />
-  <Import Project="..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.targets" Condition="Exists('..\..\packages\Reqnroll.NUnit.2.2.1\build\Reqnroll.NUnit.targets')" />
+  <Import Project="..\..\packages\Reqnroll.2.4.0\build\Reqnroll.targets" Condition="Exists('..\..\packages\Reqnroll.2.4.0\build\Reqnroll.targets')" />
+  <Import Project="..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.4.0\build\Reqnroll.Tools.MsBuild.Generation.targets" Condition="Exists('..\..\packages\Reqnroll.Tools.MsBuild.Generation.2.4.0\build\Reqnroll.Tools.MsBuild.Generation.targets')" />
+  <Import Project="..\..\packages\Reqnroll.NUnit.2.4.0\build\Reqnroll.NUnit.targets" Condition="Exists('..\..\packages\Reqnroll.NUnit.2.4.0\build\Reqnroll.NUnit.targets')" />
+  <Import Project="..\..\packages\xunit.core.2.9.3\build\xunit.core.targets" Condition="Exists('..\..\packages\xunit.core.2.9.3\build\xunit.core.targets')" />
 </Project>
