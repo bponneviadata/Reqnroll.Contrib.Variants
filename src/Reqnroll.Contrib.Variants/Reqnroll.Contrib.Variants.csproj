@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/bponneviadata/Reqnroll.Contrib.Variants</PackageProjectUrl>
     <PackageIcon>Logo.png</PackageIcon>
     <Description>Extends Reqnroll to allow variants of a test to be run using tags</Description>
-    <PackageReleaseNotes>Updated to support Reqnroll 2.2.1</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated to support Reqnroll 2.4</PackageReleaseNotes>
     <PackageTags>reqnroll;bdd;gherkin;cucumber</PackageTags>
     <RepositoryUrl>https://github.com/bponneviadata/Reqnroll.Contrib.Variants</RepositoryUrl>
     <IncludeBuildOutput>true</IncludeBuildOutput>
